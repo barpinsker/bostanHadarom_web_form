@@ -1,0 +1,131 @@
+
+<aside>
+    <button mat-icon-button (click)="openAccordion()">
+        <span class="material-symbols-outlined">menu</span>
+    </button>
+    <div class="sidebar-rigth" id="sideBar">
+                        
+        <div class="sidebar-body">
+            <div style="display: flex; gap: 5px;justify-items: center;align-items: center; border-bottom: 1px solid var(--color-info-dark);">
+            <img class="img-logo" src="./assets/Image/LogoBustanHadraom.png" style="width: 80px;height: 50px;padding-right: 5px;padding-bottom: 5px;">
+            <button id="buttonMenu" (click)="openAccordion()" mat-icon-button style="display: flex;align-items: center;transform: translateX(-65px);"><span  class="material-symbols-outlined">close</span></button>
+        </div>
+        <ng-container *ngFor="let item of links">
+        <a href="#" *ngIf="item.dropDown==false">
+            <span class="material-symbols-outlined">{{item.icon}}</span>
+            <h3>{{item.namePage}}</h3>
+        </a>
+        <a *ngIf="item.dropDown==true" (click)="item.active=!item.active" [class]="item.active==true?'active-item':''"  data-bs-toggle="collapse" href="#collapseExample" role="collapsed" aria-expanded="false" aria-controls="collapseExample">
+            <span class="material-symbols-outlined">{{item.icon}}</span>
+            <h3>{{item.namePage}}</h3>
+            <span class="material-symbols-outlined class-icon-down-up" style="margin-right: 0px;text-decoration: none;" *ngIf="item.active==false">keyboard_arrow_down</span>
+            <span class="material-symbols-outlined class-icon-down-up" style="margin-right: 0px;text-decoration: none;" *ngIf="item.active==true">keyboard_arrow_up</span>
+        </a>
+        <ng-container *ngIf="item.dropDown==true">
+            <div class="collapse" id="collapseExample">
+                <div class="body-dropDown">
+                <ng-container *ngFor="let child of item.childern">
+                    <a href="#">
+                        <span class="material-symbols-outlined">{{child.icon}}</span>
+                        <h3>{{child.namePage}}</h3>
+                    </a>
+                </ng-container>
+                 </div>
+            </div>
+        </ng-container>
+        </ng-container>
+        <div id="footer-item-id" style="display: flex;flex-direction: row;gap: 5px;align-items: center;">
+            <img src="./assets/Image/avatarBoy1.png" class="cricle">
+            <h3>בר פינסקר</h3>
+        </div>
+    </div>
+   
+        <!-- <a href="#">
+            <span class="material-symbols-outlined">table</span>
+            <h3>טבלאות</h3>
+        </a>
+        <a>
+            <span class="material-symbols-outlined">home</span>
+            <h3>דף הבית</h3>
+        </a> -->
+        
+    </div>
+
+
+</aside>
+
+
+
+
+<!-- <aside>
+<div class="sidebar">
+    <div class="sidebar-header">
+        <img class="imageStyle" src="./assets/Image/LogoBustanHadraom.png"> 
+        <button mat-icon-button class="icon-buttons" style="position: relative;right:100px;">
+            <span class="material-symbols-outlined">
+                close
+            </span>
+        </button>
+       
+    </div>
+    <div class="sidebar-body">
+        <ul>
+            <li>
+                <span class="material-symbols-outlined">
+                    home
+                </span>
+                <a>דף בית</a>
+            </li>
+            <li (click)="openAccordion()">
+                <span class="material-symbols-outlined">
+                    table
+                </span>
+                <a>טבלאות</a>
+                <span *ngIf="this.panelOpenState==false" class="material-symbols-outlined">
+                    keyboard_arrow_down
+                </span>
+                <span *ngIf="this.panelOpenState==true" class="material-symbols-outlined">
+                    keyboard_arrow_Up
+                </span>
+            </li>
+            <div class="panel" *ngIf="this.panelOpenState==true">
+                <div class="container-panel-item">
+                    <span class="material-symbols-outlined">
+                    table
+                    </span>
+                    <a>סטים</a>
+                </div>
+
+                
+                <div class="container-panel-item">
+                <span class="material-symbols-outlined">
+                    table
+                </span>
+                <a>טפסי ביקורת</a>
+                </div>
+                
+                <div class="container-panel-item">
+                <span class="material-symbols-outlined">
+                    table
+                </span>
+                <a>טפסי איכות</a>
+                </div>
+            </div>
+            <li>
+                <a>הגדרות</a>
+            </li>
+        </ul>
+        
+        
+
+    </div>
+    <div class="sidebar-footer">
+
+        <div class="avatar-user-container">
+
+                <img src="./assets/Image/avatarBoy1.png" class="cricle">
+                <h3 style="font-family: 'Frank Ruhl Libre', serif;margin-bottom: 0px;">בר פינסקר</h3>
+        </div>
+    </div>
+</div>
+</aside> -->
