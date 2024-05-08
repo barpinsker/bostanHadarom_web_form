@@ -82,6 +82,22 @@ html {
         
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;direction: rtl; width: 100vw;}
+
+.container-general{
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+  border-radius: 4px;
+  padding: 10px;
+  
+  position: relative;
+  top: 40px;
+  // right: 13%;
+  height: 85vh;
+  // overflow-y: auto;
+  z-index: 0;
+
+}
+
 ::-webkit-scrollbar {
   width: 0.6em;
 }
