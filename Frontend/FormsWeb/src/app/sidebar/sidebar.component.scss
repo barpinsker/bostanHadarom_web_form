@@ -31,7 +31,7 @@ aside .sidebar-rigth{
         z-index: 6;
     }
 aside .sidebar-body{
-        max-height: 95%;
+        max-height: 91%;
         overflow-y: auto;
         overflow-x: hidden;
 }
@@ -146,6 +146,9 @@ aside .sidebar-rigth a:hover {
   box-shadow: var(--box-shadow);
   width: 100%;
   height: 50px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 // .imageStyle{
 //         width: 80px;

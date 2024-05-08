@@ -21,6 +21,8 @@ links:Array<any>=[
   {namePage:'סטים',route:"",icon:"table"},
   {namePage:'טפסי איכות',route:"",icon:"table"},
   {namePage:'טפסי בקרה',route:"",icon:"table"},{namePage:'חומרי חיטוי',route:"",icon:"table"}]},
+{namePage:"מגדלים",router:"/grower-page",icon:"group",active:false,dropDown:false},
+{namePage:"תעודות כניסה",router:"/certificates-page",icon:"library_books",active:false,dropDown:false},
 {namePage:'טפסים',route:"",icon:"description",active:false,dropDown:false},
 {namePage:'הגדרות',route:"",icon:"settings",active:false,dropDown:false},
   ]
