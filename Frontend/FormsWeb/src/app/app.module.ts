@@ -23,8 +23,12 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { AppRoutingModule } from './app.routes';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+import { MatCardModule } from '@angular/material/card';
+import { DesktopComponent } from './desktop/desktop.component';
+
 @NgModule({
-  declarations: [AppComponent,SidebarComponent],
+  declarations: [AppComponent,SidebarComponent,DesktopComponent],
   imports: [
     CommonModule,
     SidebarModule,
@@ -47,6 +51,8 @@ import { AppRoutingModule } from './app.routes';
     MatExpansionModule,
     CdkAccordionModule,
     AppRoutingModule,
+    CanvasJSAngularChartsModule,
+    MatCardModule
   ],
   bootstrap: [AppComponent]
 })
