@@ -24,8 +24,9 @@ aside .sidebar-rigth{
         box-shadow: var(--box-shadow);
         border-radius: 0px 0px 0px 15px;
         height: 100%;
+        transform: translateX(100%);
         top: 0px;
-        width: 0;
+        width: 200px;
         transition: all ease-in-out .3s;
         z-index: 6;
     }
@@ -59,7 +60,7 @@ text-decoration: none;
 }
 #footer-item-id{
         position: absolute;
-        opacity: 0;
+        opacity: 1;
         bottom: 0px;
         padding: 5px;
         // padding-right: 5px;
@@ -68,32 +69,45 @@ text-decoration: none;
         width: 100%;
         
 }
-aside a:hover {
-box-shadow: inset 0px 0px 3px 2px var(--color-info-dark);
-h3,span{
-        color: var(--color-info-dark) !important;
-        text-decoration: underline;
+
+aside .sidebar-rigth a:hover {
+  span{
+    margin-right: 0.6rem;
+    transition: all .3s ease ;
+    padding-right: 10px;
+    border-right: 5px solid var(--color-info-dark);
+    
+  ;}
+ 
+  transition: all .3s ease-in-out ;
+  background-color: var(--color-light);
+
+
+
+// box-shadow: inset 0px 0px 3px 2px var(--color-info-dark);
+
+// h3,span{
+//         color: var(--color-info-dark) !important;
+//         text-decoration: underline;
         
-}
-span{
-        margin-right: 0.6rem;
-}
-background-color: var(--color-light);
+// }
+// span{
+//         margin-right: 0.6rem;
+// }
+// background-color: var(--color-light);
 
 
 }
 .active-item {
-        box-shadow: inset 0px 0px 3px 2px var(--color-info-dark);
-        h3,span{
-                // color: var(--color-white) !important;
-                text-decoration: underline;    
-        }
-        span{
-                margin-right: 0.6rem;
-        }
-        background-color: var(--color-light);
-        
-    }
+  background-color: var(--color-light);
+  span{
+    margin-right: 0.6rem;
+    transition: all .3s ease ;
+    padding-right: 10px;
+    border-right: 5px solid var(--color-info-dark);
+    
+  ;}
+}
  
 .body-dropDown{
         background-color: var(--color-light);
@@ -107,9 +121,13 @@ background-color: var(--color-light);
 .body-dropDown a:hover{
        
         span{
-        margin-right: 30px;
+        margin-right: 1rem;
+       
+        padding-right: 10px;
+        border-right: 5px solid var(--color-info-dark);
+        transition: all .3s ease ;
         }
-        box-shadow: transparent;
+        
 }
 .cricle{
         border-radius: 50%;
@@ -123,6 +141,12 @@ background-color: var(--color-light);
         // object-fit: contain;
         object-fit: fill;
 }
+.top-bar{
+  background-color: var(--color-white);
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  height: 50px;
+}
 // .imageStyle{
 //         width: 80px;
 //         height: 80px;
@@ -135,3 +159,11 @@ background-color: var(--color-light);
 // align-content: center;
 // align-items: center;
 // }
+
+
+
+
+
+
+
+

@@ -22,6 +22,7 @@ import { PrimeNGConfig } from 'primeng/api';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { AppRoutingModule } from './app.routes';
 @NgModule({
   declarations: [AppComponent,SidebarComponent],
   imports: [
@@ -45,6 +46,7 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
     PanelMenuModule,
     MatExpansionModule,
     CdkAccordionModule,
+    AppRoutingModule,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild ,Renderer2} from '@angular/core';
+import { Component, OnInit, ViewChild ,Renderer2, Input, Output, EventEmitter} from '@angular/core';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,7 +15,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class SidebarComponent implements OnInit {
 links:Array<any>=[
-{namePage:'דף הבית',route:"",icon:"home",active:false,dropDown:false},
+{namePage:'דף הבית',route:"desktop",icon:"home",active:false,dropDown:false},
 {namePage:'הזמנות',route:"",icon:"orders",active:false,dropDown:false},
 {namePage:'טבאלות',route:"",icon:"table",active:false,dropDown:true,childern:[
   {namePage:'סטים',route:"",icon:"table"},
@@ -24,45 +24,59 @@ links:Array<any>=[
 {namePage:'טפסים',route:"",icon:"description",active:false,dropDown:false},
 {namePage:'הגדרות',route:"",icon:"settings",active:false,dropDown:false},
   ]
-
-  isOpenMenu:boolean=false
+  isOpenMenu:boolean=false;
   panelOpenState:any = false;
+  menuFormOpen:any;
+  urlPath:any=window.location.pathname;
   constructor() {
   }
   ngOnInit(): void {
-    
+  
+  
+  }
+  filterData($event:any){}
+  changeLoclaStoreg(){
+
+  }
+  changePoiotnMenuCustom(){
+    this.isOpenMenu=!this.isOpenMenu
   }
   openAccordion(){
   var openMenu:any=document.querySelector("#sideBar")
-  var footerItem:any=document.querySelector('#footer-item-id')
-  var aside:any=document.querySelector("aside")
-  
+  var asideBar:any=document.querySelector('aside')
   this.isOpenMenu=!this.isOpenMenu
     if(this.isOpenMenu==true){
-    openMenu.style.width='200px'
-    footerItem.style.opacity='1'
-    aside.style.backgroundColor='rgb(0,0,0,0.5)'
+    // openMenu.style.width='200px'
+    openMenu.style.transform="translateX(0)";
+    asideBar.style.backgroundColor="rgba(0,0,0,0.5)";
+    asideBar.style.zIndex='10'
     }
     else{
-      footerItem.style.opacity='0'
-      openMenu.style.width='0px'
-      aside.style.backgroundColor='transparent'
+      openMenu.style.transform="translateX(100%)";
+      openMenu.style.transition="all ease-in-out .3s";
+      
+      setTimeout(function () {
+      
+        if(asideBar!=undefined)
+        asideBar.style.backgroundColor="transparent";
+        
+        asideBar.style.zIndex='0'
+      
+    }, 300);
     }
     // }
    
   }
-  
-}
-// document.onclick= function(e){
-//   var buttonMenu:any=document.querySelector("#buttonMenu")
-//   var openMenu:any=document.querySelector("#sideBar")
-//   var footerItem:any=document.querySelector('#footer-item-id')
-//   var aside:any=document.querySelector("aside")
-//   if(buttonMenu.contains(e.target) && openMenu.contains(e.target)){
-  
-//   footerItem.style.opacity='0'
-//   openMenu.style.width='0px'
-//   aside.style.backgroundColor='transparent'
-//   }
-// }
+ 
+  toMoiveCreateFrom(){
 
+  }
+}
+
+  
+  // if(buttonMenu.contains(e.target) && openMenu.contains(e.target)){
+  
+  // footerItem.style.opacity='0'
+  // openMenu.style.width='0px'
+  // aside.style.backgroundColor='transparent'
+  // }
