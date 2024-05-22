@@ -1,0 +1,119 @@
+<div style="padding: 15px;">
+        <div class="container-general">
+
+                <div class="container-grid">
+                        <div class="contianer-left">
+                                <div class="header-container-left">
+                                        <button mat-raised-button style="background-color: #fff;" (click)="addProdects()" [disabled]="isEditRow==true">
+                                                <span class="material-symbols-outlined" style="position: relative;top: 3px;" >
+                                                        add                
+                                                </span>
+                                        </button>
+                                        <h2 style="color: #fff;margin-bottom: 0px;">סיטונאים - סה"כ משטחים בהזמנה: {{totalSurfaceInOrder}}</h2>
+
+                                </div>
+                                <div style="display: grid;grid-template-columns: repeat( auto-fill, minmax(250px, 1fr) );border-bottom: 1px solid #ccc;gap:5px">
+                                <ng-container *ngFor="let box of dataSurface;index as i">
+                                <div>
+                                        <div style="height: auto;display: flex;gap: 5px;padding: 5px;">
+                                                <div class="buttons-container" style="box-shadow: var(--box-shadow-details);border-radius: 10px;">
+                                                        <div style="width: 100%;max-height: 120px;" >
+                                                                <p-dropdown  [options]="wholesalers" [disabled]="box.isEdit==false" [(ngModel)]="box.nameWholesalers" placeholder="סיטונאים"optionLabel="name"[filter]="true"filterBy="{{fliterName}}"[showClear]="false"[style]="{'width':'100%'}" (onChange)="addWholesalers(box.nameWholesalers,i)">
+                                                                <ng-template pTemplate="filter"  let-options="options">
+                                                                        <div  style="display: grid;gap: 5px; grid-template-columns: 30% 70%;" (click)="$event.stopPropagation()">
+                                                                                <input class="form-control"
+                                                                                        type="text"
+                                                                                        pInputText
+                                                                                        placeholder="קוד"
+                                                                                        [(ngModel)]="codeWholesalersFilter"
+                                                                                        (keyup)="customFilterFunction($event, options);fliterName='code'" />
+
+                                                                                <input class="form-control"
+                                                                                        type="text"
+                                                                                        pInputText
+                                                                                        placeholder="שם סיטונאי"
+                                                                                        [(ngModel)]="nameWholesalersFilter"
+                                                                                        (keyup)="customFilterFunction($event, options);fliterName='name'" />
+                                                                           
+                                                                            
+                                                                        </div>
+                                                                    </ng-template>
+                                                                <ng-template let-country pTemplate="selectedItem" >
+                                                                        <span>{{country.code}}</span> - <span>{{country.name}}</span>
+                                                                </ng-template>
+                                                                <ng-template let-country pTemplate="item">
+                                                                        
+                                                                                <span >{{country.code}}</span> - <span>{{country.name}}</span>
+                                                                       
+                                                                        
+                                                                        
+                                                                </ng-template>
+                                                                </p-dropdown>    
+                                                               
+                                                        </div>
+                                                        <div style="display: flex;gap: 5px;flex-wrap: wrap;">
+                                                                       
+                                                                        <button class="sizeIconButton" mat-raised-button [disabled]="box.isEdit==false"  (click)="saveWholesalers()">
+                                                                                <div style="display: flex ;flex-direction: column; align-items: center;justify-content: center;position: relative;top: 2px;width: 45px;">
+                                                                                <span class="material-symbols-outlined" >
+                                                                                save
+                                                                                </span>
+                                                                                <span style="font-size: 1rem;font-weight: 500;">שמירה</span>
+                                                                                </div>
+                                                                        </button>
+                                                                <button  class="sizeIconButton"mat-raised-button [disabled]="box.isEdit!=false" style="color: #333;height: 45px;flex-grow: 1;flex-basis: 20px;border-radius: 4px;">
+                                                                        <div style="display: flex ;flex-direction: column; align-items: center;justify-content: center;position: relative;top: 2px;">
+                                                                        <span class="material-symbols-outlined">
+                                                                                local_shipping
+                                                                        </span>
+                                                                        <span style="font-size: 1rem;font-weight: 500;">שיווק</span>
+                                                                        </div>
+                                                                </button>
+                                                                <button  class="sizeIconButton" mat-raised-button [disabled]="box.isEdit!=false" style="height: 45px;color: #333;flex-grow: 1;flex-basis: 20px;border-radius: 4px;" (click)="editWholesalers(box.nameWholesalers,i)">
+                                                                        <div style="display: flex ;flex-direction: column; align-items: center;justify-content: center;position: relative;top: 2px;">
+                                                                                <span class="material-symbols-outlined" >
+                                                                                        edit
+                                                                                </span>
+                                                                                <span style="font-size: 1rem;font-weight: 500;">עריכה</span>
+                                                                        </div>
+                                                                </button>
+                                                        </div>
+                                                
+                                                
+                                                <div class='body-order'>
+                                                        <ng-container *ngFor="let boxes of box.surfaces">
+                                                               <div style="flex-grow: 2;
+                                                               flex-basis: 30%;">
+                                                                        <div class="box-surface">
+                                                                                <p>
+                                                                                       {{boxes['size']}} 
+                                                                                </p>
+                                                                                <p [class]="classTypeColor[boxes.type]" style="padding: 5px;border-radius: 10px;">
+                                                                                       {{boxes.type}}
+                                                                                </p>
+                                                                                <p>
+                                                                                        כמות: {{boxes.count}}
+                                                                                </p>
+                                                                        </div>
+                                                                </div>
+                                                        </ng-container>
+                                                </div>
+                                                <div style="padding: 5px;border-top: 1px solid var(--color-dark);" *ngIf="box.surfaces.length!=0">
+                                                        <h2 style="margin-bottom: 0px;padding: 0px !important;">כמות משטחים סה"כ: {{box.countSurface}} </h2>
+                                                </div>
+                                        </div>
+                                                
+                                        </div>
+                                </div>
+                                
+                        </ng-container>
+                        </div>
+                        </div>
+                 
+
+                </div>
+                
+
+        </div>
+
+</div>
