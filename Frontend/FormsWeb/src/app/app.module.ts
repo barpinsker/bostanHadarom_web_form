@@ -19,16 +19,25 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { DividerModule } from 'primeng/divider';
 import { PrimeNGConfig } from 'primeng/api';
+// import { TooltipModule } from 'primeng/tooltip';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { AppRoutingModule } from './app.routes';
-import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
-import { MatCardModule } from '@angular/material/card';
-import { DesktopComponent } from './desktop/desktop.component';
-
+import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { ButtonModule } from 'primeng/button';
+import {MatIconModule} from '@angular/material/icon';
+import { TooltipModule, TooltipOptions } from 'ng2-tooltip-directive';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogOrderSurfacesComponent } from './pages/orders-page/dialog-order-surfaces/dialog-order-surfaces.component';
+const MyDefaultTooltipOptions: TooltipOptions = {
+  'placement':'bottom',
+  'show-delay': 200,
+  'trigger':"click"
+}
 @NgModule({
-  declarations: [AppComponent,SidebarComponent,DesktopComponent],
+  declarations: [AppComponent,SidebarComponent,OrdersPageComponent,DialogOrderSurfacesComponent],
   imports: [
     CommonModule,
     SidebarModule,
@@ -38,7 +47,6 @@ import { DesktopComponent } from './desktop/desktop.component';
     BrowserAnimationsModule,
     AvatarModule,
     AvatarGroupModule,
-    BrowserModule,
     TabMenuModule,
     HttpClientModule,
     StyleClassModule,
@@ -51,8 +59,12 @@ import { DesktopComponent } from './desktop/desktop.component';
     MatExpansionModule,
     CdkAccordionModule,
     AppRoutingModule,
-    CanvasJSAngularChartsModule,
-    MatCardModule
+    ButtonModule,
+    DropdownModule,
+    TooltipModule.forRoot(MyDefaultTooltipOptions as TooltipOptions),
+    MatIconModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   bootstrap: [AppComponent]
 })

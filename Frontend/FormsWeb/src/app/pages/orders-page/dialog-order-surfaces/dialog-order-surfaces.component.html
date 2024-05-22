@@ -1,0 +1,66 @@
+<div style="direction: rtl;">
+<h2 mat-dialog-title style="border-bottom: 1px solid #ccc;">{{data['name']['code']}} - {{data['name']['name']}}</h2>
+<div mat-dialog-content style="overflow-y: hidden;">
+                <div class="container-grid">
+                        <div class="container-rigth">
+                                <h2>מוצרים</h2>
+                                <div class="cotnainer-boxes">
+                                        <ng-container *ngFor="let product of dataInformaion.products">
+                                                <h3 style="text-align: center;background-color: #333;color: #fff;margin-bottom: 0px;font-size: 1.2rem;">{{product.nameHebraw}}</h3>
+                                                <div class="boxes">
+                                                        <ng-container  *ngFor="let size of product.size">
+                                                                <button class="{{product.class}} box-item" mat-raised-button  style="min-height:80px;height: auto;" (click)="addSizeSurfaces(size,product.nameSurface)">
+                                                                        <div class="box">
+                                                                                <span style="font-weight: bold;">{{size}}</span>
+                                                                                <span style="font-weight: bold;">{{product.nameSurface}}</span>
+                                                                        </div>
+                                                                </button>
+                                                        </ng-container>
+                                                </div>
+                                        </ng-container>
+                                </div>
+                        </div>
+                        <div class="contianer-left">
+                                <h2>משטחים</h2>
+                                <div class="body-container-left">
+                                        <ng-container *ngFor="let surface of this.data['arraySurafce'];index as i">
+                                                <div style="display: flex;flex-direction: column; flex-basis: 150px;flex-grow: 4;">
+                                               
+                                                        <div [class]="surface.itsOpen==false?'boxes-surface-data':'boxes-surface-data-open'" >
+                                                                <div style="display: flex;flex-direction: column;align-items: center;justify-content: center;gap: 3px;padding-top: 3px;">
+                                                                        <button mat-raised-button style="font-size: 1.3rem;font-weight: 900;border: 1px solid var(--color-dark);padding: 5px;" data-bs-toggle="collapse" attr.data-bs-target="#collapseExample{{i+1}}" role="collapsed" aria-expanded="true" attr.aria-controls="collapseExample{{i}}" (click)="closingDropDown('collapseExample{{i+1}}',i)">{{surface.size}}</button>
+                                                                        <span style="font-size: 1.3rem;font-weight: 900;" [class]="classTypeColor[surface.type]">{{surface.type}}</span>
+                                                                        <div style="display: flex; gap: 5px; align-items: center;">
+                                                                             
+                                                                                <button mat-raised-button style="min-width: 20px !important;height: 25px !important;width: 20px;border: 1px solid var(--color-dark);" (click)="addSurfaceNumber(i)">+</button>
+                                                                                <span style="font-size: 1.3rem;font-weight: 900;" >כמות: {{surface.count}}</span>
+                                                                                <button mat-raised-button style="min-width: 20px !important;height: 25px !important;width: 20px;border: 1px solid var(--color-dark);" (click)="minusSurfaceNumber(i)">-</button>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                        <div class="collapse" id="collapseExample{{i+1}}">
+                                                                <div class="body-dropDown">
+                                                                        <ng-container *ngFor="let numberSurf of surface.arrayNumber;index as i">
+                                                                                <div style="display: flex; gap: 2px; align-items: center;">
+                                                                                        <span style="margin-left: 2px;margin-bottom: -10px;">{{i+1}}. </span>
+                                                                                        <input class="form-control" placeholder="מספר משטח" style="width: 100%;" [(ngModel)]="numberSurf.numberSurf">
+                                                                                </div>
+                                                                        </ng-container>
+                                                                        
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </ng-container>   
+                                        </div>
+                                        
+                                      
+                        </div>
+                </div>
+
+
+
+</div>
+<div mat-dialog-actions>
+<button mat-button (click)="onNoClick()">שמירה ויציאה</button>
+</div>
+</div>
