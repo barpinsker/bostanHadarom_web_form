@@ -16,7 +16,7 @@ import { MenuItem } from 'primeng/api';
 export class SidebarComponent implements OnInit {
 links:Array<any>=[
 {namePage:'דף הבית',route:"desktop",icon:"home",active:false,dropDown:false},
-{namePage:'הזמנות',route:"",icon:"orders",active:false,dropDown:false},
+{namePage:'הזמנות',route:"orders",icon:"orders",active:false,dropDown:false},
 {namePage:'טבאלות',route:"",icon:"table",active:false,dropDown:true,childern:[
   {namePage:'סטים',route:"",icon:"table"},
   {namePage:'טפסי איכות',route:"",icon:"table"},

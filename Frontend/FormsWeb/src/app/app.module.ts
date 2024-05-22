@@ -31,13 +31,15 @@ import {MatIconModule} from '@angular/material/icon';
 import { TooltipModule, TooltipOptions } from 'ng2-tooltip-directive';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogOrderSurfacesComponent } from './pages/orders-page/dialog-order-surfaces/dialog-order-surfaces.component';
+import { DesktopComponent } from './pages/desktop/desktop.component';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 const MyDefaultTooltipOptions: TooltipOptions = {
   'placement':'bottom',
   'show-delay': 200,
   'trigger':"click"
 }
 @NgModule({
-  declarations: [AppComponent,SidebarComponent,OrdersPageComponent,DialogOrderSurfacesComponent],
+  declarations: [AppComponent,SidebarComponent,OrdersPageComponent,DialogOrderSurfacesComponent,DesktopComponent],
   imports: [
     CommonModule,
     SidebarModule,
@@ -64,7 +66,8 @@ const MyDefaultTooltipOptions: TooltipOptions = {
     TooltipModule.forRoot(MyDefaultTooltipOptions as TooltipOptions),
     MatIconModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    CanvasJSAngularChartsModule,
   ],
   bootstrap: [AppComponent]
 })
