@@ -1,0 +1,177 @@
+#tableTitle th, #tableTitle td{
+        border: 1px solid #ccc;
+        padding: 5px;
+        text-align: center;
+        font-weight: bold;
+       
+     
+}
+#tableTitle th:first-child{
+        border-radius:10px 0px 0px 0px !important;
+}
+#table1 th, #table1 td{
+        border: 1px solid #ccc;
+        padding: 7px;
+        // text-align: center;
+}
+
+#table1 td > label{
+margin-top: -10px;
+    position: relative;
+    top: -5px;
+    right: 7px;
+    background-color: #fff;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem !important;
+    font-weight: bold;
+}
+
+#table2 td{
+        border: 1px solid #ccc;
+        padding: 8px;
+        
+}
+
+#table2 td:nth-child(1){
+        border-radius: 0px 10px 10px 0px !important;
+       
+        
+}
+#table2 td:nth-child(3){
+        border-radius: 10px 0px 0px 10px !important;
+       
+        
+}
+
+#table2 td > label{
+                margin-top: -10px;
+                position: relative;
+                top: -30px;
+                right: 7px;
+                background-color: #fff;
+                padding-left: 5px;
+                padding-right: 5px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 1rem !important;
+                font-weight: bold;
+        }
+
+
+
+table {
+        border-spacing: 0;
+        border-collapse: separate;
+       }
+
+
+#table3 th,#table3 td{
+        border: 1px solid #ccc;
+        padding: 5px;
+        text-align: center;
+        
+}
+.imgeClassPrint{
+        padding:5px;
+        border-radius: 10px 0px 0px 0px;
+        width: 100%;
+        height: 150px;
+      }
+
+.ellipse-active{
+        // animation: 1s out1;
+        height: 30px;
+        width: 50px;
+        border: 2px solid ;
+        /* Setting Border Radius */
+        border-radius: 50%;
+        animation: 1s out2;
+        // transform: rotate(15deg);
+        z-index: 2;
+        position: relative;
+        left: 58px;
+        transition: all ease-in-out .3s;
+    }
+.ellipse{
+  
+        height: 30px;
+        width: 50px;
+        border: 2px solid ;
+
+        /* Setting Border Radius */
+        border-radius: 50%;
+
+        animation-name:out1;
+        animation-duration: 1s;
+        // transform: rotate(15deg);
+        z-index: 2;
+        position: relative;
+        left: -2px;
+        // transition: all ease-in-out .3s;
+}
+
+.circle-sketch-highlight{
+        position:relative;
+        left:0.5em;
+        
+ 
+        font-size: 1.4rem;
+        font-weight: 500;
+    
+      }
+.circle-sketch-highlight:before{
+content:"";
+z-index:-1;
+left:-0.3em;
+top:0.2em;
+border-width:2px;
+border-style:solid;
+border-color:black;
+position:absolute;
+border-right-color:transparent;
+width:100%;
+height:1em;
+transform:rotate(2deg);
+opacity:0.7;
+border-radius:50%;
+padding:0.1em 0.25em;
+
+}
+.circle-sketch-highlight:after{
+content:"";
+z-index:-1;
+left:-0.3em;
+top:0.4em;
+padding:0.1em 0.25em;
+border-width:2px;
+border-style:solid;
+border-color:black;
+border-left-color:transparent;
+border-top-color:transparent;
+position:absolute;
+width:100%;
+height:1em;
+transform:rotate(-1deg);
+opacity:0.7;
+border-radius:50%;
+
+}
+
+
+::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:focus:checked~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control:enabled:focus:indeterminate~.mdc-checkbox__background {
+        background-color: var(--color-info-dark) !important;
+        border-color: var(--color-info-dark) !important;
+      }
+
+::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background{
+        background-color: var(--color-info-dark) !important;
+        border-color: var(--color-info-dark) !important;
+}
+::ng-deep .mdc-checkbox__native-control .mdc-checkbox--selected{
+        background-color: var(--color-info-dark) !important;
+        border-color: var(--color-info-dark) !important;
+
+}

@@ -33,13 +33,26 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DialogOrderSurfacesComponent } from './pages/orders-page/dialog-order-surfaces/dialog-order-surfaces.component';
 import { DesktopComponent } from './pages/desktop/desktop.component';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+import { ShippingControlFormComponent } from './pages/forms/shipping-control-form/shipping-control-form.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { FinishedProductFormComponent } from './pages/forms/finished-product-form/finished-product-form.component';
+import { DialogRowComponent } from './pages/forms/finished-product-form/dialog-row/dialog-row.component';
 const MyDefaultTooltipOptions: TooltipOptions = {
   'placement':'bottom',
   'show-delay': 200,
   'trigger':"click"
 }
 @NgModule({
-  declarations: [AppComponent,SidebarComponent,OrdersPageComponent,DialogOrderSurfacesComponent,DesktopComponent],
+  declarations: [
+    AppComponent,
+    SidebarComponent,
+    OrdersPageComponent,
+    DialogOrderSurfacesComponent,
+    DesktopComponent,
+    ShippingControlFormComponent,
+    FinishedProductFormComponent,
+    DialogRowComponent,
+  ],
   imports: [
     CommonModule,
     SidebarModule,
@@ -68,6 +81,7 @@ const MyDefaultTooltipOptions: TooltipOptions = {
     MatDialogModule,
     MatButtonModule,
     CanvasJSAngularChartsModule,
+    MatCheckboxModule,
   ],
   bootstrap: [AppComponent]
 })

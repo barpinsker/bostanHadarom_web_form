@@ -1,0 +1,130 @@
+<div style="padding:10px;">
+        <div class="container-general" style="margin-top: 10px;">
+                <!-- table 1 title -->
+                <table id="tableTitle" style="width: 100%;table-layout: fixed;direction: ltr;">
+                        <thead>
+                                <ng-container *ngFor="let header of headersShipping.headerShiipingTitle;index as i">
+                                                <tr>
+                                                        <th *ngIf="header.name==''" rowspan="5"style="padding:0px ;"><img class="imgeClassPrint" src="/assets/Image/logoSofi_hebrew.jpg" ></th>
+                                                        <td *ngIf="header.name!=''"> {{header.value}}</td>
+                                                        <th *ngIf="header.name!=''" [style]="i==1?'border-radius:0px 10px 0px 0px !important;':''"> {{header.name}}</th>
+                                                </tr>
+                                </ng-container>
+                        </thead>
+
+                      
+                </table>
+                <div style="border: 1px solid #ccc;width: 100%;text-align: center;">
+                        <h1 style="margin-bottom: 0px;font-weight: 900;">שם הנוהל: שימור מוצר</h1>
+                </div>
+
+                <div style="margin-top: 10px; display: flex; gap: 20px;text-align: center;align-items: center;justify-content:center;position: sticky;top: -10px; z-index:4 ;background-color: #fff;padding: 5px;">
+                    
+                        <button style="flex-basis: 10%;width: 15% !important; " mat-raised-button>שמור ושלח</button>
+                        <h2   style="text-decoration: underline;margin-bottom: 0px;flex-grow: 1;flex-basis: 80%;">בקרת שילוח פרי</h2>
+
+                        <span style="flex-grow: 1;flex-basis: 15%;">תאריך בדיקה: 10.10.2024</span>
+                  
+                </div>
+
+                <!-- table2 שם תוצרת -->
+                <div style="margin-top: 20px;width: 100%;display: flex;gap: 10px;">
+                        <table id="table1" style="width: 100%;table-layout: fixed;">
+                                <tbody>
+                                        <tr>
+                                                <ng-container *ngFor="let header of headersShipping.headerShippingTable1;index as i">
+                                                        <td *ngIf="i==0" style="border-radius: 0px 10px 10px 0px;">
+                                                                <input class="form-control" style="margin-bottom: -70px;height: 40px;position: relative;
+                                                                top: -20px;" placeholder="{{header.headerHebraw}}">
+                                                                <label style="margin-top: -10px;background-color: #fff;">{{header.headerHebraw}}</label>
+                                                        </td>
+                                                        <td *ngIf="i==1" style="border: 1px solid #ccc;padding: 11px;">
+                                                                <div style="display: flex;flex-direction: row;align-items: center;justify-content: center;margin-bottom: -50px;position: relative;
+                                                                top: -15px;">
+                                                                        <button [class]="isActive==true?'circle-sketch-highlight':''" style="border: 0px;background-color: transparent;position: relative;z-index: 2;  font-size: 1.4rem;" (click)="isActive=true">גולמי</button> <span style="padding-left: 5px;padding-right: 5px;"> / </span>   
+                                                                        <button [class]="isActive==false?'circle-sketch-highlight':''" style="border: 0px;background-color: transparent;position: relative;z-index: 3;  font-size: 1.4rem;"(click)="isActive=false">תוצ''ג</button>
+                                                                </div>
+                                                                <label style="margin-top: -10px;background-color: #fff;right: 3px;">{{header.headerHebraw}}</label>
+                                                        </td>
+                                                        <td *ngIf="i==2" style="border: 1px solid #ccc;border-radius: 10px 0px 0px 10px;"><input class="form-control" placeholder=""></td>
+                                                </ng-container>
+                                        </tr>
+                                </tbody>
+                        </table>
+                </div>
+
+                 <!-- table3 חברות הובלה -->
+                 <div style="margin-top: 30px;width: 100%;">
+                        <table id="table2" style="width: 100%;table-layout: fixed;">
+
+                                <tbody>
+                                        <tr>
+                                                <ng-container *ngFor="let header of headersShipping.headerShippingTable2">
+                                                        <td>
+                                                                <input class="form-control" style="margin-bottom: -30px;height: 40px;position: relative;top: -5px;" placeholder="{{header.headerHebraw}}">
+                                                                <label style="margin-top: -10px;background-color: #fff;">{{header.headerHebraw}}</label>
+                                                        </td>
+                                                </ng-container>
+                                        </tr>
+                                </tbody>
+                        </table>
+                </div>
+                <!-- טבלה מספר 4 הטבלה הכללית -->
+               <div style="margin-top: 20px;">
+                        <table id="table3" style="width: 100%; table-layout: fixed;">
+                                <thead>
+                                        <tr>
+                                                <ng-container *ngFor="let header of headersShipping.headerShippingTable3">
+                                                        <th>{{header.type}}</th>
+                                                </ng-container>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                        <ng-container *ngFor="let header of headersShipping.headerShippingTable3;index as index">
+                                            <ng-container *ngIf="header.type=='נושא'">
+                                                <ng-container *ngFor="let objects of header.array">
+                                                <tr>
+                                                    <td *ngIf="header.type=='נושא'" [attr.rowspan]="objects.arraow">{{objects.nameHebraw}}</td>
+                                                </tr>              
+                                                <tr *ngFor="let data of objects.jsonField">          
+                                                <td *ngIf="header.type=='נושא'">{{data.nameHebraw}}</td>
+                                                <td>
+                                                        <div style="display: flex;flex-direction: row;align-items: center;justify-content: center;margin-bottom: -50px;position: relative;
+                                                        top: -15px;">
+                                                                <button [class]="data.valueChackBox[0]==true?'circle-sketch-highlight':''" style="border: 0px;background-color: transparent;position: relative;z-index: 2;  font-size: 1.4rem;" (click)="data.valueChackBox[0]=!data.valueChackBox[0];data.valueChackBox[1]=false;">תקין</button> 
+                                                                <span style="padding-left: 5px;padding-right: 5px;"> / </span>   
+                                                                <button [class]="data.valueChackBox[1]==true?'circle-sketch-highlight':''" style="border: 0px;background-color: transparent;position: relative;z-index: 3;  font-size: 1.4rem;"(click)="data.valueChackBox[0]=false;data.valueChackBox[1]=!data.valueChackBox[1];">לא תקין</button>
+                                                        </div>
+                                                </td>
+                                                <td><input class="form-control" style="height: 40px;"  placeholder="פעולת מתקנת" [(ngModel)]="data.valueInput"></td>
+                                                    <!-- <mat-checkbox color="primary" class="example-margin"    value="!data.valueChackBox[0]" (ngModelChange)="data.valueChackBox[0]=true;data.valueChackBox[1]=false;" [(ngModel)]="data.valueChackBox[0]"  ><label style="margin-bottom: 0px;padding: 5px;">תקין</label></mat-checkbox>
+                                                    <mat-checkbox color="primary" class="example-margin"  value="!data.valueChackBox[1]" (ngModelChange)="data.valueChackBox[1]=true;data.valueChackBox[0]=false;"   [(ngModel)]="data.valueChackBox[1]" ><label style="margin-bottom: 0px;padding: 5px;">לא תקין</label></mat-checkbox></td>
+                                                 -->
+                                                <tr>
+                                            </ng-container>
+                                            </ng-container>
+                                      
+                                    </ng-container>
+                                    </tbody>
+                        
+                        </table>
+        
+                </div>
+
+                <div style="margin-top: 20px;display: flex;gap: 10px;flex-direction: column;">
+                        <div >
+                                <label style="margin-bottom: 0px;margin-top: -10px;border: 1px solid #ccc;position: relative;right: 5px;top: 10px;padding: 0px 5px 0px 5px;background-color: #fff;border-radius: 4px;">{{headersShipping.headerInputShippingForm[0].nameHebraw}}</label>
+                                <input class="form-control" placeholder="{{headersShipping.headerInputShippingForm[0].nameHebraw}}" style="height: 40px;">
+                        </div>
+                        <div style="display: flex; gap: 10px ;align-items: center;width: 100%;">
+                                <ng-container *ngFor="let header of headersShipping.headerInputShippingForm;index as i">
+                                        <div *ngIf="i!=0" style="flex-grow: 1;">
+                                                <label style="margin-bottom: 0px;margin-top: -10px;border: 1px solid #ccc;position: relative;right: 5px;top: 10px;padding: 0px 5px 0px 5px;background-color: #fff;border-radius: 4px;">{{header.nameHebraw}}</label>
+                                                <input class="form-control" placeholder="{{header.nameHebraw}}" style="height: 40px;">
+                                        </div>
+                                </ng-container>
+                        </div>
+                </div>
+        </div>
+
+</div>

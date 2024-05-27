@@ -1,0 +1,21 @@
+.container-fields{
+   display: flex;
+   flex-direction: row;
+   gap: 5px;
+   direction: rtl;
+}
+.inputsStyle{
+   height: 50px;
+}
+.postion-header-input{
+   position: relative;
+   top: 12px;
+   background-color: #dee2e6;
+   padding-right: 5px;
+   padding-left: 5px;
+   border: 1px solid #dee2e6;
+   border-radius: 4px;
+   font-size: 1rem;
+   font-weight: bold;
+   right: 5px;
+}

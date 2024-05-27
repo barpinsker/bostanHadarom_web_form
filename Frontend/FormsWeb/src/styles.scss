@@ -97,6 +97,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;direction: r
   height: 85vh;
   // overflow-y: auto;
   z-index: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 
 }
 
@@ -116,5 +118,123 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;direction: r
   outline: 1px solid var(--color-light);
   border-radius: 3px;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.form-control{
+  height: 50px;
+}
+.form-control:focus {
+  // #7d8da1
+  border-color: rgb(125, 141, 161) !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(125, 141, 161,0.6) !important;
+}
+
+.label-before {
+  line-height: 20px;
+  font-size: 14px;
+  
+  background: #fff;
+  padding: 0 6px;
+    transition: 300ms all;
+    border-color: #32794b;
+  // left: 9px;
+}
+.field {
+  height: 50px;
+  position: relative;
+  // margin-bottom: 15px;
+  aspect-ratio: auto;
+  flex-grow: 1;
+  width: 200px;
+  z-index: 3;
+
+  // width: 300px;
+  label::before {
+    content: attr(title);
+    position: absolute;
+    top: 0px;
+    right: 7px;
+    line-height: 40px;
+    font-size: 16px;
+    color: #777;
+    // border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: 300ms all;
+    cursor: text;  
+  }
+  input {
+    width: 100%;
+
+    direction: rtl;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #222;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: 300ms all;  
+
+    &:focus {
+    top: -10px;
+    border-color: #32794b;
+    transition:300ms all;
+    }
+
+    &:disabled + label::before {
+    @extend .label-before;
+    content: attr(title);
+    top: -10px;
+    border: 1px solid #ced4da;
+    }
+    &:valid + label::before {
+      @extend .label-before;
+      content: attr(title);
+            top: -10px;
+            color: #777 !important;
+            border: 1px solid #ced4da;
+          }
+          &:focus + label::before {
+            @extend .label-before;
+            border:1px solid  #32794b;
+            top: -10px;
+            color: #32794b;
+            border-radius: 4px;
+          }
+        }
+
+
+      select {
+          width: 100%;
+          direction: rtl;
+          box-sizing: border-box;
+          font-size: 14px;
+          color: #222;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          transition: 300ms all;  
+    
+          &:focus {
+          top: -10px;
+          border-color: #32794b;
+          transition:300ms all;
+          }
+    
+          &:disabled + label::before {
+          @extend .label-before;
+          content: attr(title);
+          top: -10px;
+          border: 1px solid #ced4da;
+          }
+          &:valid + label::before {
+            @extend .label-before;
+            content: attr(title);
+                  top: -10px;
+                  color: #777 !important;
+                  border: 1px solid #ced4da;
+                }
+                &:focus + label::before {
+                  @extend .label-before;
+                  border:1px solid  #32794b;
+                  top: -10px;
+                  color: #32794b;
+                  border-radius: 4px;
+                }
+              }
+}

@@ -1,0 +1,19 @@
+<h2 mat-dialog-title style="direction: rtl;">Hi </h2>
+<mat-dialog-content style="padding-top: 15px;">
+   <div class="container-fields">
+   <ng-container *ngFor="let header of data.arrayRowHeader;index as i">
+      <div class="field">
+         <input  class="form-control" style="width: 100%;" [(ngModel)]="dataRow[header.nameEnglish]">
+         <label for="{{header.nameEnglish}}" style="width: 100%;" title="{{header.nameHebraw}}" data-title=""></label>
+       </div>
+      <!-- <div>
+         <span class="postion-header-input">{{header.nameHebraw}}</span>
+         <input class="form-control inputsStyle" placeholder="{{header.nameHebraw}}" [(ngModel)]="dataRow[header.nameEnglish]">
+      </div> -->
+   </ng-container>
+   </div>
+</mat-dialog-content>
+<mat-dialog-actions style=" direction: rtl;">
+  
+  <button mat-button [mat-dialog-close]="dataRow" cdkFocusInitial>הוספת משטח</button>
+</mat-dialog-actions>

@@ -1,0 +1,45 @@
+<div style="padding: 10px;">
+   <div class="container-general " style="margin-top: 20px;">
+      <h1 style="text-align: center;">בדיקת מוצר מוגמר</h1>
+      <div class="table-title">
+         <ng-container *ngFor="let header of headersTables.header_finished_product_title1;index as i">
+            <div style="display: grid;grid-template-columns: 130px 200px;">
+               <div class="container-span" [style]="i==0?'border-radius: 0px 4px 0px 0px':i==2?'border-radius:0px 0px 4px 0px':''">
+                  <span style="margin-bottom: 0px;">{{header.nameHebraw}}: </span>
+               </div>
+               <input class="form-control" [style]="i==0?'border-radius: 4px 0px 0px 0px !important;border-right: 0px':i==2?'border-radius:0px 0px 0px 4px':'border-radius:0px'" placeholder="{{header.nameHebraw}}">
+            </div>
+         </ng-container>
+      </div>
+
+      <div class="general-table">
+         <button  mat-raised-button class="button-add" style="margin-bottom: 5px;" (click)="openDialog()">
+            <mat-icon style="margin-right: 0px;margin-top: 3px">add</mat-icon>
+         </button>
+         <table class=" mat-elevation-z8" style="border-radius: 4px;"> 
+            <thead class=" mat-elevation-z8" style="border-radius: 4px;">
+               <tr>
+                  <ng-container *ngFor="let header of headersTables.header_finished_product_general_table">
+                     <th>{{header.nameHebraw}}</th>
+                  </ng-container>
+               </tr>
+            </thead>
+            <tbody>
+               <ng-container *ngIf="dataTable.length !=0">
+                  <ng-container *ngFor="let data of dataTable">
+                     <tr>
+                        <td *ngFor="let header of headersTables.header_finished_product_general_table">{{data[header.nameEnglish]}}</td>
+                     </tr>
+                  </ng-container>
+                  
+               </ng-container>
+               
+               <tr *ngIf="dataTable.length==0">
+                  <td colspan="6" >לא נמצא מידע</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+
+</div>
