@@ -17,10 +17,14 @@ export class SidebarComponent implements OnInit {
 links:Array<any>=[
 {namePage:'דף הבית',route:"desktop",icon:"home",active:false,dropDown:false},
 {namePage:'הזמנות',route:"orders",icon:"orders",active:false,dropDown:false},
+// table-of-procedures
 {namePage:'טבאלות',route:"",icon:"table",active:false,dropDown:true,childern:[
+  {namePage:'טבלת תקנים',route:"/table-of-standards",icon:"table"},
   {namePage:'סטים',route:"",icon:"table"},
   {namePage:'טפסי איכות',route:"",icon:"table"},
-  {namePage:'טפסי בקרה',route:"",icon:"table"},{namePage:'חומרי חיטוי',route:"",icon:"table"}]},
+  {namePage:'טפסי בקרה',route:"",icon:"table"},
+  {namePage:'חומרי חיטוי',route:"",icon:"table"}
+]},
 {namePage:"מגדלים",router:"/grower-page",icon:"group",active:false,dropDown:false},
 {namePage:"תעודות כניסה",router:"/certificates-page",icon:"library_books",active:false,dropDown:false},
 {namePage:'טפסים',route:"",icon:"description",active:false,dropDown:false},

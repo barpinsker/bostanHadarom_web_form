@@ -28,7 +28,7 @@
             <div class="collapse" id="collapseExample">
                 <div class="body-dropDown">
                 <ng-container *ngFor="let child of item.childern">
-                    <a href="#">
+                    <a href="{{child.route}}">
                         <span class="material-symbols-outlined">{{child.icon}}</span>
                         <h3>{{child.namePage}}</h3>
                     </a>
