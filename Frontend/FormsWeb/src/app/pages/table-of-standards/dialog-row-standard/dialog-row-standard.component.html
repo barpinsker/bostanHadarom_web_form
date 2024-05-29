@@ -1,0 +1,80 @@
+
+
+<div *ngIf="data['isRow']==false">
+<div  style="border-bottom: 1px solid #ccc;direction: rtl;background-color: var(--color-info-dark);color: #fff;margin-top: -8px;display: flex;gap: 10px;align-items: center;">
+  
+   <h2 mat-dialog-title style="color: #fff;margin-bottom: 0px;">קובץ חדש</h2>
+      <span class="material-symbols-outlined" style="cursor: pointer;position: absolute;top: 15px;left: 5%;" (click)="onNoClick()">
+         close
+      </span>
+</div>
+
+<div mat-dialog-content style="direction: rtl;">
+   <input class="form-control" style="height: auto !important;" type="file" id="file-id" value="$event" (change)="createUrlFile()"/>
+   <input class="form-control" style="height: auto !important;margin-top: 10px;" placeholder="שם קובץ לשמירה" [(ngModel)]="dataRow['nameDocument']" (change)="createUrlFile()"/>
+   <select class="form-control" style="margin-top: 10px;" [(ngModel)]="dataRow['nameStandard']">
+      <option  selected disabled>בחירת תקן</option>
+      <option *ngFor="let standart of data['standarts']">{{standart}}</option>
+
+   </select>
+</div>
+
+<div mat-dialog-actions style="direction: rtl;">
+   <button mat-button class="button-add" style="height: 50px;border: 1px solid #ccc;" (click)="save()" [disabled]="dataRow['nameStandard']==''||dataRow['nameDocument']==''||dataRow['url']==''">שמור</button>
+</div>
+</div>
+
+
+<div *ngIf="data['isRow']==true">
+<div  style="border-bottom: 1px solid #ccc;direction: rtl;background-color: var(--color-info-dark);color: #fff;margin-top: -8px;display: flex;gap: 10px;align-items: center;">
+  
+<h2 mat-dialog-title style="color: #fff;margin-bottom: 0px;">תקן חדש</h2>
+   <span class="material-symbols-outlined" style="cursor: pointer;position: absolute;top: 15px;left: 5%;" (click)="onNoClick()">
+      close
+   </span>
+</div>
+<div mat-dialog-content style="direction: rtl;">
+   
+  
+
+   <div style="display: flex;gap: 5px;margin-top: 10px;flex-wrap: wrap;flex-grow: 1;">
+      <input class="form-control" style="height: auto !important;margin-bottom: 10px;" placeholder="דוח" type="file" id="file-id" value="$event" (change)="createUrlFile()"/>
+      <ng-container *ngFor="let h of this.header.headerDataStrandart">
+         <div class="field" style="flex-grow: 1;flex-basis: 180px;" *ngIf="h.type=='text'">
+            <input [disabled]="h.nameEnglish=='linkToTheCertificate'" class="form-control" type="{{h.type}}" id="{{h.nameEnglish}}" [(ngModel)]="dataRow[h.nameEnglish]">
+            <label  for="{{h.nameEnglish}}" style="width: 100%;" title="{{h.nameHebraw}}" ></label>
+         </div>
+
+         <div [class]="h.isOpen?'dropDown-open':'dropDown-close'" *ngIf="h.type=='select'">
+            <div (click)="h.isOpen=!h.isOpen" style="height: 50px;display: flex;align-items: center;padding-right: 5px;gap: 5px;overflow-x: hidden;max-width: 100%;cursor: pointer;">
+               <ng-container *ngIf="dataRow[h.nameEnglish].length!=0">
+                  <ng-container *ngFor="let d of dataRow[h.nameEnglish]">
+                  <span style="border: 1px solid var(--color-info-dark);border-radius: 10%;padding: 2px;background-color: var(--color-dark);color: #fff;">{{d}},</span>
+                  </ng-container>
+               </ng-container>
+               <ng-container *ngIf="dataRow[h.nameEnglish].length==0">
+               <span>{{h.nameHebraw}}</span>
+               <span class="material-symbols-outlined">
+                  keyboard_arrow_down
+               </span>
+               </ng-container>
+            </div>
+            <div [class]="h.isOpen?'body-dropDown-open':'body-dropDown-close'">
+            <ng-container *ngFor="let data of h.arraySelect;index as i">
+            <div style="display: flex;gap: 10px;padding: 5px;">
+               <input type="checkbox" style="width: 20px;height: 20px;" value="{{data.name}}" [checked]="isChose(h.nameEnglish,data.name)" (click)="isChose(h.nameEnglish,data.name)==false?addChoise(h.nameEnglish,data.name):removeChoise(h.nameEnglish,data.name)">
+               <span>{{data.name}}</span>
+            </div>
+         </ng-container>
+         </div>
+         </div>
+      </ng-container> 
+
+
+   </div>  
+   
+</div>
+<div mat-dialog-actions style="direction: rtl;">
+   <button mat-button class="button-add" (click)="save()" style="height: 50px;border: 1px solid #ccc;" [disabled]="dataRow['nameStandard']==''">הוספת תקן</button>
+</div>
+</div>

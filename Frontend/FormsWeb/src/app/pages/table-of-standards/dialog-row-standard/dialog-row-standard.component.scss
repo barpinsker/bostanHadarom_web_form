@@ -1,0 +1,59 @@
+::ng-deep .p-multiselect-items{
+   padding: 0px;
+}
+.body-dropDown-open{
+   box-shadow: var(--box-shadow);
+   background-color: #fff;
+   padding: 5px;
+   border-right: 1px solid #ccc;
+   border-left: 1px solid #ccc;
+   border-bottom: 1px solid #ccc;
+   position: relative;
+   z-index: 3;
+   top:0%;
+   width: 100%;
+   visibility: visible;
+   
+}
+.body-dropDown-close{
+   box-shadow: var(--box-shadow);
+   background-color: #fff;
+   padding: 5px;
+   border-right: 1px solid #ccc;
+   border-left: 1px solid #ccc;
+   border-bottom: 1px solid #ccc;
+   position: relative;
+   z-index: 3;
+   top: 0%;
+   width: 100%;
+   visibility: hidden;
+}
+.dropDown-close{
+   flex-grow: 1;
+   flex-basis: 180px;
+   border: 1px solid #ccc;
+   height: 50px;
+   border-radius: 4px;
+}
+.dropDown-open{
+   flex-grow: 1;
+   flex-basis: 180px;
+   border: 1px solid #ccc;
+   height: 50px;
+   border-radius: 4px 4px 0px 0px;
+   border-bottom: 0px !important ;
+}
+.button-add{
+   background-color: var(--color-info-dark);
+   color: #fff;
+}
+
+.button-add:disabled{
+   color: #c4c6d0 !important;
+        background-color: rgba(26, 27, 31, .12) !important;
+}
+
+
+
+
+

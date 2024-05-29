@@ -1,0 +1,72 @@
+<div style="padding: 10px;">
+   <div class="container-general" style="margin-top: 10px;">
+      <div style="display: flex;gap: 10px;">
+         <button mat-raised-button class="buttons-style" (click)="openDialogAddStandrats(true,0)"><span>
+               <span class="material-symbols-outlined" style="position: relative;top: 3px;">add</span>
+            </span>
+         </button>
+
+         <button mat-raised-button class="buttons-style" (click)="openDialogAddFile(true,0)">
+          
+         <span class="material-symbols-outlined" style="position: relative;top: 3px;">
+            upload_file
+            </span>
+      </button>
+      </div>
+         <div class="general-table">
+            <div style="display: flex;gap: 10px;">
+               <div style="flex-basis: 30%;">
+               <table class="mat-elevation-z8" style="border-radius: 4px;">
+                  <thead style="border-radius: 4px;">
+                     <tr>
+                        <ng-container *ngFor="let header of headerStandarts">
+                           <th>{{header.nameHebraw}}</th>
+                        </ng-container>
+                     </tr>
+                     
+                     
+                  </thead>
+                  <tbody>
+                     <ng-container *ngFor="let data of dataTableStandarts;index as i">
+                        <tr (click)="openDialogAddStandrats(false,i)">
+                           <ng-container *ngFor="let header of headerStandarts">  
+                              <td >
+                                 {{data[header.nameEnglish]}}
+                              </td>
+                           </ng-container>
+                        </tr>
+                     </ng-container>
+                  </tbody>
+                  </table>
+               </div>
+            <div style="flex-basis: 70%;">
+            <table class="mat-elevation-z8 "  style="border-radius: 4px;width: 100%;">
+               <thead style="border-radius: 4px;">
+                  <tr>
+                     <ng-container *ngFor="let header of headerTable">
+                        <th>{{header.nameHebraw}}</th>
+                     </ng-container>
+                  </tr>
+                  
+                  
+               </thead>
+               <tbody>
+                  <ng-container *ngFor="let data of dataTable;index as i">
+                     <tr >
+                        <ng-container *ngFor="let header of headerTable">
+                           <td *ngIf="header.nameEnglish!='nameDocument'" (click)="openDialogAddFile(false,i)">
+                              {{data[header.nameEnglish]}}
+                           </td>
+                           <td *ngIf="header.nameEnglish=='nameDocument'">
+                              <a href="{{data.url}}">{{data[header.nameEnglish]}}</a>
+                           </td>
+                        </ng-container>
+                     </tr>
+                  </ng-container>
+               </tbody>
+            </table>
+         </div>
+         </div>
+         </div>
+   </div>
+</div>

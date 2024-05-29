@@ -33,13 +33,16 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DialogOrderSurfacesComponent } from './pages/orders-page/dialog-order-surfaces/dialog-order-surfaces.component';
 import { DesktopComponent } from './pages/desktop/desktop.component';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+import { TableOfStandards } from './pages/table-of-standards/table-of-standards.component';
+import { DialogRowStandardComponent } from './pages/table-of-standards/dialog-row-standard/dialog-row-standard.component';
+import { MultiSelectModule } from 'primeng/multiselect';
 const MyDefaultTooltipOptions: TooltipOptions = {
   'placement':'bottom',
   'show-delay': 200,
   'trigger':"click"
 }
 @NgModule({
-  declarations: [AppComponent,SidebarComponent,OrdersPageComponent,DialogOrderSurfacesComponent,DesktopComponent],
+  declarations: [AppComponent,SidebarComponent,OrdersPageComponent,DialogOrderSurfacesComponent,DesktopComponent,TableOfStandards,DialogRowStandardComponent],
   imports: [
     CommonModule,
     SidebarModule,
@@ -68,6 +71,7 @@ const MyDefaultTooltipOptions: TooltipOptions = {
     MatDialogModule,
     MatButtonModule,
     CanvasJSAngularChartsModule,
+    MultiSelectModule,
   ],
   bootstrap: [AppComponent]
 })
