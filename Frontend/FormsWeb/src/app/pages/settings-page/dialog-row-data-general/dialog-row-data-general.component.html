@@ -1,0 +1,25 @@
+<div  style="border-bottom: 1px solid #ccc;direction: rtl;background-color: var(--color-info-dark);color: #fff;margin-top: -8px;display: flex;gap: 10px;align-items: center;">
+  
+   <h2 mat-dialog-title style="color: #fff;margin-bottom: 0px;">{{data['title']}}</h2>
+      <span class="material-symbols-outlined" style="cursor: pointer;position: absolute;top: 15px;left: 2%;" (click)="onNoClick()">
+         close
+      </span>
+</div>
+
+<div mat-dialog-content style="direction: rtl;">
+
+         <div style="display: flex; gap: 10px;flex-wrap: wrap;">
+            <ng-container *ngFor="let inputs of data['headers']">
+               <div class="field"  *ngIf="inputs.nameEnglish!='actions'">
+                  <input class="form-control" id="{{inputs.nameEnglish}}" [(ngModel)]="dataRow[inputs.nameEnglish]">
+                  <label for="{{inputs.nameEnglish}} " title="{{inputs.nameHebraw}}"></label>
+               </div>
+            </ng-container>
+         </div>
+
+
+</div>
+
+<div mat-dialog-actions style="direction: rtl;border-top: 1px solid #ccc;">
+   <button mat-button class="button-add" (click)="data['dataTable'].length==0?addRow():updateRow()" style="height: 50px;border: 1px solid #ccc;">{{data['dataTable'].length==0?'הוסף':'שמור'}}</button>
+</div>

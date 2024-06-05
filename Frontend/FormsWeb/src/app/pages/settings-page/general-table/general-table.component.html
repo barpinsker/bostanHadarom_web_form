@@ -1,0 +1,34 @@
+<div style="padding: 10px;box-shadow: var(--box-shadow);border-radius: 4px;" >
+   <h2 style="background-color:#333;color: #fff;padding-right: 5px;border-radius: 4px;">{{titleTable}}</h2>
+   <button mat-raised-button style="margin-bottom: 5px;" (click)="newAddRowDialog()"><span class="material-symbols-outlined" style="position: relative;top: 3px;" >add</span></button>
+   <div style="max-height: 150px; overflow-y: auto;overflow-x: hidden; border-radius: 4px;" class="mat-elevation-z8">
+      <table  >
+         <thead>
+
+               <ng-container *ngFor="let header of headersTable">
+                  <th>
+                     {{header.nameHebraw}}
+                  </th>
+               </ng-container>
+            
+         </thead>
+         <tbody>
+            <ng-container *ngFor="let data of dataTabel;index as i">
+               <tr style="cursor: pointer;" >
+                  <ng-container *ngFor="let header of headersTable">
+                     <td (click)="saveRowDialog(i)" *ngIf="header.nameEnglish!='actions'">{{data[header.nameEnglish]}}</td>
+                     <td *ngIf="header.nameEnglish=='actions'">
+                     <button mat-mini-fab class="buttonIcon" (click)="deleteRow(i)"><mat-icon style="font-size: 20px;position: relative;top: 2px;">delete</mat-icon></button>
+                     </td>
+                  </ng-container>
+
+               </tr>
+            </ng-container>
+            <tr *ngIf="dataTabel.length==0">
+               <td [attr.colspan]="headersTable.length">לא נמצע מידע</td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+
+</div>

@@ -36,13 +36,26 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { TableOfStandards } from './pages/table-of-standards/table-of-standards.component';
 import { DialogRowStandardComponent } from './pages/table-of-standards/dialog-row-standard/dialog-row-standard.component';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { GeneralTableComponent } from './pages/settings-page/general-table/general-table.component';
+import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
+import { DialogRowDataGeneralComponent } from './pages/settings-page/dialog-row-data-general/dialog-row-data-general.component';
 const MyDefaultTooltipOptions: TooltipOptions = {
   'placement':'bottom',
   'show-delay': 200,
   'trigger':"click"
 }
 @NgModule({
-  declarations: [AppComponent,SidebarComponent,OrdersPageComponent,DialogOrderSurfacesComponent,DesktopComponent,TableOfStandards,DialogRowStandardComponent],
+  declarations: [
+    AppComponent,
+    SidebarComponent,
+    OrdersPageComponent,
+    DialogOrderSurfacesComponent,
+    DesktopComponent,
+    TableOfStandards,
+    DialogRowStandardComponent,
+    GeneralTableComponent,
+    SettingsPageComponent,
+    DialogRowDataGeneralComponent],
   imports: [
     CommonModule,
     SidebarModule,

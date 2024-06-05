@@ -95,7 +95,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;direction: r
   top: 40px;
   // right: 13%;
   height: 85vh;
-  // overflow-y: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   z-index: 0;
 
 }
