@@ -1,0 +1,27 @@
+<div style="padding: 10px;">
+
+   <div class="container-general" style="margin-top: 10px;">
+
+      <div class="mat-elevation-z8" style="border-radius: 4px;max-height: 80vh;">
+         <table style="width: 100%;table-layout: fixed;">
+            <thead>
+               <th *ngFor="let header of headerTable">
+                  {{header.nameHebraw}}
+               </th>
+            </thead>
+            <tbody>
+               <ng-container *ngFor="let data of dataTable;index as i">
+                     <tr>
+                        <td *ngFor="let header of headerTable">{{data[header.nameEnglish]}}</td>
+                     </tr>
+               </ng-container>
+               <tr *ngIf="dataTable.length==0">
+                  <td [colSpan]="headerTable.length" style="text-align: center;">לא נמצא מידע</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+
+   </div>
+
+</div>

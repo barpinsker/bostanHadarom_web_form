@@ -39,6 +39,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { GeneralTableComponent } from './pages/settings-page/general-table/general-table.component';
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 import { DialogRowDataGeneralComponent } from './pages/settings-page/dialog-row-data-general/dialog-row-data-general.component';
+import { TableQualityFormsComponent } from './pages/table-quality-forms/table-quality-forms.component';
 const MyDefaultTooltipOptions: TooltipOptions = {
   'placement':'bottom',
   'show-delay': 200,
@@ -46,16 +47,17 @@ const MyDefaultTooltipOptions: TooltipOptions = {
 }
 @NgModule({
   declarations: [
-    AppComponent,
-    SidebarComponent,
-    OrdersPageComponent,
-    DialogOrderSurfacesComponent,
-    DesktopComponent,
-    TableOfStandards,
-    DialogRowStandardComponent,
-    GeneralTableComponent,
-    SettingsPageComponent,
-    DialogRowDataGeneralComponent],
+  AppComponent,
+  SidebarComponent,
+  OrdersPageComponent,
+  DialogOrderSurfacesComponent,
+  DesktopComponent,
+  TableOfStandards,
+  DialogRowStandardComponent,
+  GeneralTableComponent,
+  SettingsPageComponent,
+  DialogRowDataGeneralComponent,
+  TableQualityFormsComponent],
   imports: [
     CommonModule,
     SidebarModule,

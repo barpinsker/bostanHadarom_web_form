@@ -1,0 +1,26 @@
+thead{
+   background-color: var(--color-buttons);
+   color: #fff;
+   position: sticky;
+   top: 0px;
+   z-index: 2;
+}
+th{
+   padding: 5px;
+   text-align: center;
+}
+th:first-child{
+   border-radius: 0px 4px 0px 0px;
+}
+th:last-child{
+   border-radius: 4px 0px 0px 0px;
+}
+td{
+   height: 40px;
+
+}
+tr:hover{
+   background-color: rgb(204, 204, 204,0.3);
+   transition: all .1s;
+   cursor: pointer;
+}
