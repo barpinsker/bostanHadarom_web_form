@@ -21,7 +21,7 @@ links:Array<any>=[
 {namePage:'טבאלות',route:"",icon:"table",active:false,dropDown:true,childern:[
   {namePage:'טבלת תקנים',route:"/table-of-standards",icon:"table"},
   {namePage:'סטים',route:"",icon:"table"},
-  {namePage:'טפסי איכות',route:"",icon:"table"},
+  {namePage:'טפסי איכות',route:"/table-quality-forms",icon:"table"},
   {namePage:'טפסי בקרה',route:"",icon:"table"},
   {namePage:'חומרי חיטוי',route:"",icon:"table"}
 ]},
