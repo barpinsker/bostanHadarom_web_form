@@ -22,7 +22,7 @@ links:Array<any>=[
   {namePage:'טבלת תקנים',route:"/table-of-standards",icon:"table"},
   {namePage:'סטים',route:"",icon:"table"},
   {namePage:'טפסי איכות',route:"/table-quality-forms",icon:"table"},
-  {namePage:'טפסי בקרה',route:"",icon:"table"},
+  {namePage:'טפסי בקרה',route:"/disinfectants-of-table",icon:"table"},
   {namePage:'חומרי חיטוי',route:"",icon:"table"}
 ]},
 {namePage:"מגדלים",router:"/grower-page",icon:"group",active:false,dropDown:false},
