@@ -40,6 +40,7 @@ import { GeneralTableComponent } from './pages/settings-page/general-table/gener
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 import { DialogRowDataGeneralComponent } from './pages/settings-page/dialog-row-data-general/dialog-row-data-general.component';
 import { TableQualityFormsComponent } from './pages/table-quality-forms/table-quality-forms.component';
+import { DisinfectantsOfTableComponent } from './pages/disinfectants-of-table/disinfectants-of-table.component';
 const MyDefaultTooltipOptions: TooltipOptions = {
   'placement':'bottom',
   'show-delay': 200,
@@ -57,7 +58,8 @@ const MyDefaultTooltipOptions: TooltipOptions = {
   GeneralTableComponent,
   SettingsPageComponent,
   DialogRowDataGeneralComponent,
-  TableQualityFormsComponent],
+  TableQualityFormsComponent,
+  DisinfectantsOfTableComponent],
   imports: [
     CommonModule,
     SidebarModule,

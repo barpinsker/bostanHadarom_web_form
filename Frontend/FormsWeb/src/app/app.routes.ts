@@ -5,6 +5,7 @@ import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
 import { TableOfStandards } from './pages/table-of-standards/table-of-standards.component';
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 import { TableQualityFormsComponent } from './pages/table-quality-forms/table-quality-forms.component';
+import { DisinfectantsOfTableComponent } from './pages/disinfectants-of-table/disinfectants-of-table.component';
 export const routes: Routes = [
         {path:"",redirectTo:"/desktop",pathMatch:"full"},
         {path:"desktop",component:DesktopComponent},
@@ -12,6 +13,7 @@ export const routes: Routes = [
         {path:"table-of-standards",component:TableOfStandards},
         {path:"settings-page",component:SettingsPageComponent},
         {path:"table-quality-forms",component:TableQualityFormsComponent},
+        {path:"disinfectants-of-table",component:DisinfectantsOfTableComponent}
         // {path:'desktop',loadChildren: () => import('./app.module').then(m => m.AppModule)},
 
 ];
