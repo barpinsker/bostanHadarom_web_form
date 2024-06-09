@@ -67,10 +67,13 @@ export class OrdersPageComponent {
         this.dataSurface[index].surfaces.push(surface)
        
       }
+      this.sortSurfaces(this.generalIndexRow)
       for(let j of this.dataSurface[index].surfaces){
         this.dataSurface[index].countSurface+=j.count
       }
+
       this.totalSurface()
+    
     });
   }
   totalSurface(){
@@ -112,8 +115,19 @@ export class OrdersPageComponent {
       }
       if(isFind==false)this.dataSurface[this.generalIndexRow].surfaces.push({size:size,type:type,count:1})}
     else{this.dataSurface[this.generalIndexRow].surfaces.push({size:size,type:type,count:1})}
+    
   }
-
+  sortSurfaces(index:any){
+    var newArraySorting:any=[]
+    for(let name of this.dataInformaion.products){
+      for(let header of this.dataSurface[index].surfaces){
+        if (header.type==name.nameSurface){
+          newArraySorting.push(header)
+        }
+      }
+  }
+  this.dataSurface[index].surfaces=[...newArraySorting]
+}
   saveWholesalers(){
     for(let i=0;i<this.dataSurface.length;i++){
       this.dataSurface[i].indexRow=i
@@ -129,7 +143,9 @@ export class OrdersPageComponent {
     this.dataSurface[index].isEdit=true
     this.generalIndexRow=index
     this.isEditRow=true
+   
     this.openDialog(name,this.dataSurface[index].surfaces,index)
+
   }
   customFilterFunction(event: KeyboardEvent, options: DropdownFilterOptions|any) {
       options.filter(event);

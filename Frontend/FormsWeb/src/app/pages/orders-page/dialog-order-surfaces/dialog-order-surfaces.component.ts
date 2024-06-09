@@ -60,6 +60,21 @@ export class DialogOrderSurfacesComponent {
   else{
     this.data['arraySurafce'].push({size:size,type:type,count:1,arrayNumber:[],itsOpen:false})
   }
+  
+  }
+  
+  sortingSurfaces(){
+    var sortingArray:any=[]
+    for(let header of this.dataInformaion.products){
+      this.data['arraySurafce'].map((surface:any,index:any)=>{
+        if(header.nameSurface===surface.type){
+          sortingArray.push(surface)
+        }
+      })
+    }
+    this.data['arraySurface']=[...sortingArray]
+    return sortingArray
+    
   }
   closingDropDown(idActive:any,index:any){
    
