@@ -23,8 +23,8 @@
                         <div class="contianer-left">
                                 <h2>משטחים</h2>
                                 <div class="body-container-left">
-                                        <ng-container *ngFor="let surface of this.data['arraySurafce'];index as i">
-                                                <div style="display: flex;flex-direction: column; flex-basis: 150px;flex-grow: 4;">
+                                        <ng-container *ngFor="let surface of this.sortingSurfaces();index as i">
+                                                <div style="display: flex;flex-direction: column; flex-basis: 150px;flex-grow: 4;border-radius: 4px; " class="mat-elevation-z8">
                                                
                                                         <div [class]="surface.itsOpen==false?'boxes-surface-data':'boxes-surface-data-open'" >
                                                                 <div style="display: flex;flex-direction: column;align-items: center;justify-content: center;gap: 3px;padding-top: 3px;">
