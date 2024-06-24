@@ -9,20 +9,39 @@
       </span>
 </div>
 
-<div mat-dialog-content style="direction: rtl;">
-   <input class="form-control" style="height: auto !important;" type="file" id="file-id" value="$event" (change)="createUrlFile()"/>
-   <input class="form-control" style="height: auto !important;margin-top: 10px;" placeholder="שם קובץ לשמירה" [(ngModel)]="dataRow['nameDocument']" (change)="createUrlFile()"/>
-   <select class="form-control" style="margin-top: 10px;" [(ngModel)]="dataRow['nameStandard']">
-      <option  selected disabled>בחירת תקן</option>
-      <option *ngFor="let standart of data['standarts']">{{standart}}</option>
-
-   </select>
+<div mat-dialog-content style="direction: rtl; background-color: #fff !important;">
+   <div style="display: flex;gap: 10px;">
+      <div style="display: flex;flex-direction: row; flex-basis: 100%;flex-grow: 1;gap: 10px;">
+         <div style="flex-basis: 20%;display: flex;align-items: center;border: 1px solid var(--color-info-dark);border-radius: 4px;padding: 5px;">
+            <mat-icon style="color:#F8D775 ; padding-right: 0px !important;"matListItemIcon >folder</mat-icon>
+            <h2 style="margin-bottom: 0px;color: #333;">{{dataRow['nameStandard']}}</h2>
+         </div>
+         <div style="flex-basis: 80%">
+            <div *ngIf="isUploadFile==false" style="width: 500px;height: 200px;text-align:center;border: 1px solid var(--color-info-dark);cursor: pointer;border-radius: 0px 4px 4px 0px;display: flex;align-items: center;justify-content: center;">
+               <label for="file-id-Document" style="color: #333;cursor: pointer;width: 100%;" *ngIf="isUploadFile==false" (click)="printData()">לחץ להוספת קובץ</label>
+               <input *ngIf="isUploadFile==false" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/pdf, " class="form-control" style="height: auto !important;display: none;" type="file" id="file-id-Document" (change)="addDocumentFile($event)"/>
+            </div>
+            <div style="display: flex;gap: 10px; width: 100%;align-items: center;border: 1px dashed var(--color-info-dark);padding:5px" *ngIf="isUploadFile==true">
+            <img *ngIf="whatIsFile(dataRow['file'])=='docx'" style="width: 20px;height: 20px;margin-left: 5px;" src="./assets/Image/docx.png">
+            <img *ngIf="whatIsFile(dataRow['file'])=='pdf'"  style="width: 20px;height: 20px;margin-left: 5px;" src="./assets/Image/pdf.png">   
+            <label style="color: #333;width: 100%;font-size: 14px;margin-bottom: 0px;">{{dataRow['file']}}</label>
+            <button mat-icon-button style (click)="isUploadFile=false"><span class="material-symbols-outlined">delete</span></button>
+            </div>
+            <input *ngIf="isUploadFile==true" class="form-control" style="margin-top: 5px;" placeholder="שם קובץ לשמירה" [(ngModel)]="dataRow['nameDocument']">
+            
+         </div>
+   </div>
+   </div>
+   <div>
+   </div>
+</div>
+   <div mat-dialog-actions style="direction: rtl;background-color: #fff !important;color: #eee !important;">
+      <button mat-button class="button-add" style="height: 50px;border: 1px solid #ccc;" (click)="this.data.isNew==true?save():updateRow()" [disabled]="dataRow['nameStandard']==''||dataRow['nameDocument']==''">שמור</button>
+   </div>
 </div>
 
-<div mat-dialog-actions style="direction: rtl;">
-   <button mat-button class="button-add" style="height: 50px;border: 1px solid #ccc;" (click)="save()" [disabled]="dataRow['nameStandard']==''||dataRow['nameDocument']==''||dataRow['url']==''">שמור</button>
-</div>
-</div>
+
+
 
 
 <div *ngIf="data['isRow']==true">
@@ -33,18 +52,44 @@
       close
    </span>
 </div>
-<div mat-dialog-content style="direction: rtl;">
+<div mat-dialog-content style="direction: rtl; background-color: #fff !important;">
    
   
 
-   <div style="display: flex;gap: 5px;margin-top: 10px;flex-wrap: wrap;flex-grow: 1;">
-      <input class="form-control" style="height: auto !important;margin-bottom: 10px;" placeholder="דוח" type="file" id="file-id" value="$event" (change)="createUrlFile()"/>
+   <div style="display: flex;gap: 5px;margin-top: 10px;flex-wrap: wrap;">
+         <div style="width: 100%;display: flex; gap: 5px;">
+         <div style="display: flex;flex-direction: row;flex-grow: 1;">
+            <div style="padding: 5px;background-color: #ccc;border-radius: 0px 4px 4px 0px;height: 40px;display: flex;align-items: center;">
+               <label  for="file-id-report" style="margin-bottom: 0px;cursor: pointer;width: 100px;">File report</label>
+            </div>
+            <div (click)="this.data.isNew==false?getFiles(this.dataRow['file_url_report']):''" class="style-url-file">
+               <label *ngIf="this.dataRow['file_url_report']==''" style="margin-bottom: 0px;">file report</label>
+               <label *ngIf="this.dataRow['file_url_report']!=''" style="margin-bottom: 0px;"><img style="width: 20px;height: 20px;margin-right: 5px;" src="./assets/Image/pdf.png">{{this.nameFile_report}}</label>
+            </div>
+         </div>
+         <input class="form-control" style="height: auto !important;display: none;" type="file" id="file-id-report" (change)="addReportFile($event)" accept="application/pdf"/>
+         <!-- <input type="file" id="files" class="hidden"/> -->
+         <div style="display: flex;flex-direction: row; flex-grow: 1;margin-bottom: 10px;">
+            <div style="border: 1px solid #eee;padding: 5px;background-color: #ccc;border-radius: 0px 4px 4px 0px;height: 40px;display: flex;align-items: center;">
+               <label  for="file-id-deploma" style="margin-bottom: 0px;cursor: pointer; width: 100px;">File deploma</label>
+            </div>
+            <div  (click)="this.data.isNew==false?getFiles(this.dataRow['file_url_deploma']):''" class="style-url-file">
+               <label *ngIf="this.dataRow['file_url_deploma']==''" style="margin-bottom: 0px;">file deploma</label>
+               <label *ngIf="this.dataRow['file_url_deploma']!=''" style="margin-bottom: 0px;cursor: pointer !important;"><img style="width: 20px;height: 20px;margin-right: 5px;" src="./assets/Image/pdf.png">{{this.nameFile_deploma}}</label>
+            </div>
+         </div>
+ 
+      <input class="form-control" style="height: auto !important;margin-bottom: 10px;display: none;" type="file" id="file-id-deploma" accept="application/pdf" value="$event" (change)="addDeplomaFile($event)"/>
+   </div>
       <ng-container *ngFor="let h of this.header.headerDataStrandart">
-         <div class="field" style="flex-grow: 1;flex-basis: 180px;" *ngIf="h.type=='text'">
-            <input [disabled]="h.nameEnglish=='linkToTheCertificate'" class="form-control" type="{{h.type}}" id="{{h.nameEnglish}}" [(ngModel)]="dataRow[h.nameEnglish]">
+         <div class="field" style="flex-grow: 1;flex-basis: 180px;" *ngIf="h.type=='text'&&h.nameEnglish!='notes'">
+            <input [disabled]="h.nameEnglish=='link_to_the_certificate'" class="form-control" type="{{h.type}}" id="{{h.nameEnglish}}" [(ngModel)]="dataRow[h.nameEnglish]">
             <label  for="{{h.nameEnglish}}" style="width: 100%;" title="{{h.nameHebraw}}" ></label>
          </div>
-
+         <div class="field" style="flex-grow: 1;flex-basis: 250px;" *ngIf="h.type=='text'&&h.nameEnglish=='notes'">
+            <input [disabled]="h.nameEnglish=='link_to_the_certificate'" class="form-control" type="{{h.type}}" id="{{h.nameEnglish}}" [(ngModel)]="dataRow[h.nameEnglish]">
+            <label  for="{{h.nameEnglish}}" style="width: 100%;" title="{{h.nameHebraw}}" ></label>
+         </div>
          <div [class]="h.isOpen?'dropDown-open':'dropDown-close'" *ngIf="h.type=='select'">
             <div (click)="h.isOpen=!h.isOpen" style="height: 50px;display: flex;align-items: center;padding-right: 5px;gap: 5px;overflow-x: hidden;max-width: 100%;cursor: pointer;">
                <ng-container *ngIf="dataRow[h.nameEnglish].length!=0">
@@ -74,7 +119,7 @@
    </div>  
    
 </div>
-<div mat-dialog-actions style="direction: rtl;">
-   <button mat-button class="button-add" (click)="save()" style="height: 50px;border: 1px solid #ccc;" [disabled]="dataRow['nameStandard']==''">הוספת תקן</button>
+<div mat-dialog-actions style="direction: rtl;background-color: #fff !important;">
+   <button mat-button class="button-add" (click)="this.data.isNew==true?save():updateRow()" style="height: 50px;border: 1px solid #ccc;" [disabled]="dataRow['nameStandard']==''">{{this.data.isNew==true?'הוספת תקן':'עדכון שורה'}}</button>
 </div>
 </div>

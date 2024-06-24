@@ -4,7 +4,7 @@
 }
 table{
    width: 100%;
-   table-layout: fixed;
+   // table-layout: fixed;
    text-align: center;
    
 
@@ -17,12 +17,12 @@ table{
 }
 
 .general-table thead  th:first-child{
-   width: 10% !important;
+   width: 12% !important;
    // border: 1px solid;
    border-radius: 0px 4px 0px 0px;
 }
 .general-table thead  th:last-child{
-   width: 15% !important;
+   width: 12% !important;
    // border: 1px solid;
    border-radius: 4px 0px 0px 0px;
 }
@@ -48,14 +48,153 @@ table{
    height: 40px;
    text-align: center;
 }
+#item-select{
+   border: 1px solid #eee;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+}
+#item-select-active{
+   border: 1px solid #eee;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   background-color: var(--color-light);
+}
+.mat-mdc-list-item-icon {
+   color: rgba(0, 0, 0, 0.54);
+ }
 .buttons-style{
    background-color: var(--color-info-dark) !important;
    color: #fff !important;
+   height: 50px;
 
 }
 .buttons-style:disabled{
    color: #c4c6d0 !important;
    background-color: rgba(26, 27, 31, .12) !important;
+   height: 50px;
   
    
+}
+.header-list{
+   background-color: var(--color-buttons);
+   color: #fff;
+   border-bottom: 1px solid #eee;
+   padding: 3px;
+   margin:-7px 0px 0px ;
+   border-radius: 4px 4px 0px 0px;
+}
+.item{
+   border-bottom: 1px solid #eee !important;
+   cursor: pointer !important;
+   height: 40px !important;
+   padding-right: 0px !important;
+   display: flex !important;
+   align-items: center !important;
+}
+// .item:last-child{
+//    border-bottom: 0px solid #eee;cursor: pointer;height: 40px !important;
+// }
+.item:hover:not(.item-active){
+   background-color: var(--color-light);
+   
+}
+::ng-deep .autocomplete-container .input-container .x i{
+   display: none !important;   
+}
+
+.item-active{
+   background-color: var(--color-light) !important;
+   box-shadow: inset 0px 0px 6px 1px #8b8b8b;
+   cursor: pointer !important;
+   height: 40px !important;
+}
+.itemStandards{
+   border-bottom: 1px solid #eee !important;
+   
+   padding-right: 0px !important;
+   display: flex !important;
+   align-items: center !important;
+   cursor: pointer !important;
+   height: 50px !important;
+}
+.body-dropDown{
+   display: flex;
+   gap: 5px;
+   align-items: center;
+}
+
+.buttonStandards{
+background-color: #333 !important;
+color: #fff !important;
+}
+.buttonStandards:hover{
+   background-color: #505050 !important;
+   // ?color: #fff !important;
+}
+.buttonStandards:disabled{
+   color: #c4c6d0 !important;
+   background-color: rgba(26, 27, 31, .12) !important;
+   height: 50px;
+  
+   
+}
+.button-style-date{
+   background-color: #333 !important;
+   color: #fff !important;
+   height: 50px;
+}
+.button-style-date:disabled{
+   color: #c4c6d0 !important;
+   background-color: rgba(26, 27, 31, .12) !important;
+   height: 50px;
+}
+
+.search-button-close{
+   min-width: 30px !important;
+   background-color: #fff !important;
+   color: #333 !important;
+   height: 40.8px;
+   border-radius: 4px 4px 4px 4px !important;
+   transition: border-radius .7s ease-in-out;
+}
+.search-button-open{
+   background-color: #505050 !important;
+   min-width: 30px !important;
+   color: #fff !important;
+   height: 40.8px;
+   border-radius: 0px 4px 4px 0px !important;
+   transition: border-radius .7s ease-in-out;
+}
+.ng-autocomplete{
+   width: 100% !important;
+   // opacity:0;
+   background-color: #fff !important;
+   position: relative;
+   z-index: -1;
+   transition: z-index .1s ease-in-out;
+}
+.openSearchInput{
+   .ng-autocomplete{
+      width: 100% !important;
+      background-color: #fff !important;
+      position: relative;
+      z-index: 0;
+      transition: z-index .1s ease-in-out;
+   }
+   width: 100% !important;
+   transition: all .5s ease-in-out;
+}
+.closeSearchInput{
+   .ng-autocomplete{
+      width: 100% !important;
+      background-color: transparent !important;
+      position: relative;
+      z-index: -1;
+   }
+   width: 0px !important;
+   transition: width .5s ease-in-out;
 }
