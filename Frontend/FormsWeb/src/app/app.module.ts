@@ -16,7 +16,7 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { FilterMatchMode, MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DividerModule } from 'primeng/divider';
 import { PrimeNGConfig } from 'primeng/api';
 // import { TooltipModule } from 'primeng/tooltip';
@@ -28,7 +28,7 @@ import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import {MatIconModule} from '@angular/material/icon';
-import { TooltipModule, TooltipOptions } from 'ng2-tooltip-directive';
+// import { TooltipModule, TooltipOptions } from 'ng2-tooltip-directive';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogOrderSurfacesComponent } from './pages/orders-page/dialog-order-surfaces/dialog-order-surfaces.component';
 import { DesktopComponent } from './pages/desktop/desktop.component';
@@ -41,11 +41,15 @@ import { SettingsPageComponent } from './pages/settings-page/settings-page.compo
 import { DialogRowDataGeneralComponent } from './pages/settings-page/dialog-row-data-general/dialog-row-data-general.component';
 import { TableQualityFormsComponent } from './pages/table-quality-forms/table-quality-forms.component';
 import { DisinfectantsOfTableComponent } from './pages/disinfectants-of-table/disinfectants-of-table.component';
-const MyDefaultTooltipOptions: TooltipOptions = {
-  'placement':'bottom',
-  'show-delay': 200,
-  'trigger':"click"
-}
+import { ToastrModule } from 'ngx-toastr';
+import {MatListModule} from '@angular/material/list';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+
+// const MyDefaultTooltipOptions: TooltipOptions = {
+//   'placement':'bottom',
+//   'show-delay': 200,
+//   'trigger':"click"
+// }
 @NgModule({
   declarations: [
   AppComponent,
@@ -64,6 +68,7 @@ const MyDefaultTooltipOptions: TooltipOptions = {
     CommonModule,
     SidebarModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterOutlet,
     BrowserModule,
     BrowserAnimationsModule,
@@ -83,13 +88,18 @@ const MyDefaultTooltipOptions: TooltipOptions = {
     AppRoutingModule,
     ButtonModule,
     DropdownModule,
-    TooltipModule.forRoot(MyDefaultTooltipOptions as TooltipOptions),
+    MatListModule,
+    AutocompleteLibModule,
+    // TooltipModule.forRoot(MyDefaultTooltipOptions as TooltipOptions),
     MatIconModule,
     MatDialogModule,
     MatButtonModule,
     CanvasJSAngularChartsModule,
     MultiSelectModule,
+    ToastrModule.forRoot({positionClass:'bottom'}),
+    
   ],
+  providers:[],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

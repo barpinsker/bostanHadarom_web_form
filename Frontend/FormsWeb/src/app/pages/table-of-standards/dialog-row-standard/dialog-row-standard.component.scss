@@ -1,6 +1,10 @@
 ::ng-deep .p-multiselect-items{
    padding: 0px;
 }
+:ng-deep .mdc-dialog__surface {
+   background-color: red !important;
+ } 
+ 
 .body-dropDown-open{
    box-shadow: var(--box-shadow);
    background-color: #fff;
@@ -14,6 +18,21 @@
    width: 100%;
    visibility: visible;
    
+}
+.style-url-file{
+
+   border: 1px solid #eee;
+   border-radius: 4px 0px 0px 4px;
+   display: flex;
+   align-items: center;
+   height: 40px;
+   padding-left: 5px;
+   padding-right: 5px;
+   width: 100%;
+   cursor: pointer !important;
+}
+.style-url-file>label{
+   cursor: pointer !important;
 }
 .body-dropDown-close{
    box-shadow: var(--box-shadow);
