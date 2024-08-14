@@ -48,4 +48,24 @@ this.http.get(url,{
   saveAs(r,'filename.zip')
 })
 }
+
+
+// function orders //
+
+saveDataOrder(data:any):Observable<any>{
+  return this.http.post(`${this.baseUrl}/create-order/`,data)
+}
+updateOrder(data:any,date_order:any):Observable<any>{
+  return this.http.put(`${this.baseUrl}/update_order/`,data)
+}
+// saveOrdersDetails(data:any):Observable<any>{
+//   return this.http.post(`${this.baseUrl}/create_order_details/`,data)
+// }
+// saveSurface(data:any):Observable<any>{
+//   return this.http.post(`${this.baseUrl}/create_surface/`,data)
+// }
+getAllOrder():Observable<any>{
+  return this.http.get(`${this.baseUrl}/get_all_order`)
+}
+
 }

@@ -4,7 +4,7 @@
         gap: 5px;
 }
 .container-rigth h2 ,.contianer-left h2{
-        background-color: var(--color-info-dark);
+        background-color: var(--color-buttons);
         color: #fff;
         border-radius: 12px 12px 0px 0px;
         margin-bottom: 0px;
@@ -14,9 +14,12 @@
 .container-rigth, .contianer-left{
        
         overflow-x: hidden;
-        box-shadow: var(--box-shadow);
-        padding: 5px;
+        // box-shadow: var(--box-shadow);
+        // padding: 5px;
        
+}
+.mat-elevation-z8{
+        border-radius: 12px !important;
 }
 .body-container-left{
         // display: flex;
@@ -123,4 +126,14 @@
 ::ng-deep mat-dialog-contant{
         // overflow-y: hidden !important;
         background-color: var(--color-background) !important;
+}
+.style-header-dialog{
+        background-color: var(--color-info-dark);
+        color: #fff;
+        margin-top: -5px;
+}
+.save-button{
+        background-color: var(--color-info-dark);
+        color: #fff;
+        height: 40px;
 }

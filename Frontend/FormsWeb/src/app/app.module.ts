@@ -44,7 +44,8 @@ import { DisinfectantsOfTableComponent } from './pages/disinfectants-of-table/di
 import { ToastrModule } from 'ngx-toastr';
 import {MatListModule} from '@angular/material/list';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
-
+import { QrPageOrderComponent } from './pages/orders-page/qr-page-order/qr-page-order.component';
+import { QRCodeModule } from 'angularx-qrcode';
 // const MyDefaultTooltipOptions: TooltipOptions = {
 //   'placement':'bottom',
 //   'show-delay': 200,
@@ -63,7 +64,8 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
   SettingsPageComponent,
   DialogRowDataGeneralComponent,
   TableQualityFormsComponent,
-  DisinfectantsOfTableComponent],
+  DisinfectantsOfTableComponent,
+  QrPageOrderComponent],
   imports: [
     CommonModule,
     SidebarModule,
@@ -97,6 +99,7 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     CanvasJSAngularChartsModule,
     MultiSelectModule,
     ToastrModule.forRoot({positionClass:'bottom'}),
+    QRCodeModule,
     
   ],
   providers:[],

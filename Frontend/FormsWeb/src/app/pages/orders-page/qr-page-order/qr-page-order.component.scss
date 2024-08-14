@@ -1,0 +1,30 @@
+@page { 
+   size: landscape;
+}
+
+.header-container{
+   width: 100%;
+   text-align: center;
+}
+.body-container{
+   display: -ms-flexbox;
+   display: flex;
+   -ms-flex-wrap: wrap;
+   flex-wrap: wrap;
+   padding: 5px;
+   // gap: 5px;
+}
+.column{
+   -ms-flex: 50%;
+   flex: 50%;
+   padding:5px;
+   border-left: 2px solid #ccc;
+   // border-radius: 4px;
+   align-items: center;
+}
+.container-body-boxes-towBox{
+   display: grid;grid-template-columns:auto auto;gap: 5px;align-items: center;width: 300px;
+}
+.container-body-boxes-oneBox{
+   display: grid;grid-template-columns:150px;gap: 5px;align-items: center;width: auto; align-items: center;
+}

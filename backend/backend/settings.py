@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'table_of_standards',
+    'orders'
 ]
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

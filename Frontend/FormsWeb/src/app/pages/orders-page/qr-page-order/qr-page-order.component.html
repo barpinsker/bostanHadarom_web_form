@@ -1,0 +1,31 @@
+<!-- <p>qr-page-order works!</p> -->
+<div style="padding: 15px;" >
+   <div class="container-general" style="margin-top: -20px;">
+      <div class="header-container">
+         <h1>ברקודים</h1>
+      </div>
+      <div class="body-container" style="overflow-x: hidden;overflow-y: hidden !important;">
+         <div *ngFor="let surf of dataQr">
+         <div class="column" style="text-align: center;">
+            <div  style="border: 1px solid #ccc;border-radius: 4px;padding: 5px;margin-bottom: 5px;width: 100%;">
+                  <span>{{surf.nameWholesalers}}</span>
+               </div>
+              
+               <div [class]="surf.surfaces.length>1?'container-body-boxes-towBox':'container-body-boxes-oneBox'">
+                
+                  <ng-container *ngFor="let qr of surf.surfaces">
+                        <div style="border: 1px solid #ccc;border-radius: 4px;width: auto;height: 150px;padding: 5px;text-align: center;">
+                              <h2 style="border: 1px solid #ccc;border-radius: 4px;padding: 3px;margin-bottom: 0px;font-size: 1.1rem;">{{qr.size}} - {{qr.type}}</h2>
+                              <qrcode [qrdata]="'Your data string'" [width]="100" [errorCorrectionLevel]="'M'"></qrcode>
+                        </div>
+                      
+                      
+                  </ng-container>
+                  
+               </div>
+             
+            </div>
+         </div>
+      </div>
+
+</div>

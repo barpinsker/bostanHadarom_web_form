@@ -84,7 +84,7 @@ html {
         font-size: 14px;
     }
         
-html, body { height: 100%; }
+html, body { height: 100%;overflow-x: hidden !important; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;direction: rtl; width: 100vw;}
 
 .container-general{
@@ -98,7 +98,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;direction: r
   // right: 13%;
   height: 85vh;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   z-index: 0;
 
 }
@@ -115,9 +115,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;direction: r
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background-color:var(--color-info-dark);
+  background-color:var(--color-buttons);
   outline: 1px solid var(--color-light);
-  border-radius: 3px;
+  border-radius: 0px 0px 3px 3px;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
