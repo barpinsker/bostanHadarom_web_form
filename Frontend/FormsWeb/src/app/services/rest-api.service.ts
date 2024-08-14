@@ -48,4 +48,18 @@ this.http.get(url,{
   saveAs(r,'filename.zip')
 })
 }
+
+
+
+////////////////////////////////////////
+// wholesaler funcrtion
+
+insertWholesaler(data:any):Observable<any>{
+  return this.http.post(`${this.baseUrl}/insert-wholesaler/`,data)
+}
+
+
+
+
+
 }
