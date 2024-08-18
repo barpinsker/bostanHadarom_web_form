@@ -48,4 +48,28 @@ this.http.get(url,{
   saveAs(r,'filename.zip')
 })
 }
+
+// function orders //
+saveDataOrder(data:any):Observable<any>{
+  return this.http.post(`${this.baseUrl}/create-order/`,data)
+}
+updateOrder(data:any,date_order:any):Observable<any>{
+  return this.http.put(`${this.baseUrl}/update_order/`,data)
+}
+getAllOrder():Observable<any>{
+  return this.http.get(`${this.baseUrl}/get_all_order`)
+}
+getSpecificeOrder(reference:any):Observable<any>{
+  return this.http.get(`${this.baseUrl}/get_specific_order/${reference}`)
+}
+
+////////////////////////////////////////
+// wholesaler funcrtion
+
+insertWholesaler(data:any):Observable<any>{
+  return this.http.post(`${this.baseUrl}/insert-wholesaler/`,data)
+}
+getWholesalerToOrder(referenceOrder:any):Observable<any>{
+  return this.http.get(`${this.baseUrl}/get-wholesaler-to-order/${referenceOrder}`)
+}
 }

@@ -1,0 +1,43 @@
+@page { 
+   size: landscape;
+}
+
+.header-container{
+   width: 100%;
+   text-align: center;
+   
+}
+
+.body-container{
+   
+   display: block;
+   -ms-flex-wrap: wrap;
+   flex-wrap: wrap;
+   padding: 5px;
+   // gap: 5px;
+}
+.column{
+   // border-bottom: 1px solid #ccc;
+   align-items: center;
+}
+
+.box-details{
+   height:120px;border: 1px solid #ccc;width: 120px;border-radius: 4px;
+}
+.box-details #box label{
+   position: absolute;
+   bottom: 0px;
+   border-top: 1px solid #ccc;
+   width: 100%;
+}
+.box-details #box span{
+   position:absolute;
+   top: 0;
+}
+#box{
+   position: relative;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}

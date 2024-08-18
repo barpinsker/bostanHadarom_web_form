@@ -24,17 +24,20 @@ export class DialogOrderSurfacesComponent {
   }
   addSurfaceNumber(index:any){
     this.data['arraySurafce'][index].count+=1
-    for(let i=0;i< this.data['arraySurafce'][index].count-this.data['arraySurafce'][index].arrayNumber.length;i++){
-      if(this.data['arraySurafce'][index]!=undefined)
-      this.data['arraySurafce'][index].arrayNumber.push({"numberSurf":''})
-    }
+    this.data['arraySurafce'][index].arrayNumber.push({number:'',date_surface:''})
+    this.data['arraySurafce'][index].ischange=true
+    for(let i=0;i <this.data['arraySurface'].length;i++){
+      if (index!=i){
+          this.data['arraySurafce'][i].ischange=false
+        }
+      }
   }
   minusSurfaceNumber(index:any){
     if(this.data['arraySurafce'][index]!=undefined){
       if(this.data['arraySurafce'][index].arrayNumber.length==0)
         this.data['arraySurafce'][index].count-=this.data['arraySurafce'][index].count>0?1:0
       else
-      if(this.data['arraySurafce'][index].arrayNumber[this.data['arraySurafce'][index].arrayNumber.length-1].numberSurf==''){
+      if(this.data['arraySurafce'][index].arrayNumber[this.data['arraySurafce'][index].arrayNumber.length-1].number==''){
         this.data['arraySurafce'][index].count-=this.data['arraySurafce'][index].count>0?1:0
         this.data['arraySurafce'][index].arrayNumber.pop()
 
@@ -45,23 +48,29 @@ export class DialogOrderSurfacesComponent {
     }
   }
   addSizeSurfaces(size:any,type:any){
+    console.log(this.data['arraySurafce'])
     var isFind:boolean=false
     if(this.data['arraySurafce'].length!=0){
     for(let i of this.data['arraySurafce']){
       if(i.size==size && i.type==type){
+        i.arrayNumber.push({number:'',date_surface:''})
         i.count+=1
         isFind=true
+        i.ischange=true
         break
       }
     }
+  
     if(isFind==false)
-      this.data['arraySurafce'].push({size:size,type:type,count:1,arrayNumber:[],itsOpen:false})
+      this.data['arraySurafce'].push({size:size,type:type,count:1,arrayNumber:[{number:'',date_surface:''}],itsOpen:false,ischange:true})
   }
   else{
-    this.data['arraySurafce'].push({size:size,type:type,count:1,arrayNumber:[],itsOpen:false})
+    this.data['arraySurafce'].push({size:size,type:type,count:1,arrayNumber:[{number:'',date_surface:''}],itsOpen:false,ischange:true})
   }
   
-  }
+  
+ 
+}
   
   sortingSurfaces(){
     var sortingArray:any=[]
@@ -73,7 +82,7 @@ export class DialogOrderSurfacesComponent {
       })
     }
     this.data['arraySurface']=[...sortingArray]
-    return sortingArray
+    return this.data['arraySurface']
     
   }
   closingDropDown(idActive:any,index:any){

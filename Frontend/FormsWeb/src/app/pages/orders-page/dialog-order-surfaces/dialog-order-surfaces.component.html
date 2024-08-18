@@ -1,8 +1,8 @@
 <div style="direction: rtl;">
-<h2 mat-dialog-title style="border-bottom: 1px solid #ccc;">{{data['name']['code']}} - {{data['name']['name']}}</h2>
+<h2 mat-dialog-title class="style-header-dialog" style="border-bottom: 1px solid #ccc;">{{data['name']}}</h2>
 <div mat-dialog-content style="overflow-y: hidden;">
                 <div class="container-grid">
-                        <div class="container-rigth">
+                        <div class="container-rigth  mat-elevation-z8">
                                 <h2>מוצרים</h2>
                                 <div class="cotnainer-boxes">
                                         <ng-container *ngFor="let product of dataInformaion.products">
@@ -20,14 +20,14 @@
                                         </ng-container>
                                 </div>
                         </div>
-                        <div class="contianer-left">
+                        <div class="contianer-left  mat-elevation-z8">
                                 <h2>משטחים</h2>
-                                <div class="body-container-left">
+                                <div class="body-container-left" >
                                         <ng-container *ngFor="let surface of this.sortingSurfaces();index as i">
                                                 <div style="display: flex;flex-direction: column; flex-basis: 150px;flex-grow: 4;border-radius: 4px; " class="mat-elevation-z8">
                                                
                                                         <div [class]="surface.itsOpen==false?'boxes-surface-data':'boxes-surface-data-open'" >
-                                                                <div style="display: flex;flex-direction: column;align-items: center;justify-content: center;gap: 3px;padding-top: 3px;">
+                                                                <div style="display: flex;flex-direction: column;align-items: center;justify-content: center;gap: 3px;padding-top: 10px;">
                                                                         <button mat-raised-button style="font-size: 1.3rem;font-weight: 900;border: 1px solid var(--color-dark);padding: 5px;" data-bs-toggle="collapse" attr.data-bs-target="#collapseExample{{i+1}}" role="collapsed" aria-expanded="true" attr.aria-controls="collapseExample{{i}}" (click)="closingDropDown('collapseExample{{i+1}}',i)">{{surface.size}}</button>
                                                                         <span style="font-size: 1.3rem;font-weight: 900;" [class]="classTypeColor[surface.type]">{{surface.type}}</span>
                                                                         <div style="display: flex; gap: 5px; align-items: center;">
@@ -43,7 +43,7 @@
                                                                         <ng-container *ngFor="let numberSurf of surface.arrayNumber;index as i">
                                                                                 <div style="display: flex; gap: 2px; align-items: center;">
                                                                                         <span style="margin-left: 2px;margin-bottom: -10px;">{{i+1}}. </span>
-                                                                                        <input class="form-control" placeholder="מספר משטח" style="width: 100%;" [(ngModel)]="numberSurf.numberSurf">
+                                                                                        <input class="form-control" placeholder="מספר משטח" style="width: 100%;" [(ngModel)]="numberSurf.number">
                                                                                 </div>
                                                                         </ng-container>
                                                                         
@@ -61,6 +61,6 @@
 
 </div>
 <div mat-dialog-actions>
-<button mat-button (click)="onNoClick()">שמירה ויציאה</button>
+<button mat-raised-button class="save-button" (click)="onNoClick()">שמירה ויציאה</button>
 </div>
 </div>

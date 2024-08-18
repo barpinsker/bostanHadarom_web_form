@@ -7,8 +7,8 @@ export class DataInformaion{
         {nameHebraw:"מגשים",size:["80","85","90"],class:"button-black-orange",nameSurface:'מגש'},                
         {nameHebraw:"תפזורת",size:["60","65","70"],class:"button-brown",nameSurface:"תפזורת"}];
         surfacesOrder:any={
-                nameWholesalers:'',
-                codeWholesaler:'',
+                name_wholesalers:'',
+                code_wholesalers:'',
                 surfaces:[],
                 isMarketing:false,
                 isEdit:true,

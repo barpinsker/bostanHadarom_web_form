@@ -20,13 +20,28 @@
         // border-radius: 12px;
      
 }
+.border-boxes{
+        border: 1px solid var(--color-dark);
+}
+.container-orderHover{
+        // border: 1px solid var(--color-dark);
+        border-radius: 4px;
+}
+.container-orderHover:hover{
+        background-color: #dfdede;
+        transition: all ease-in-out .3s;
+}
 .header-container-left{
+        
         display: flex; gap: 10px ;
-        background-color: var(--color-info-dark);
-        padding: 2px;
+        background-color: var(--color-buttons);
+        padding: 5px;
         padding-right: 5px;
         align-items: center;
         border-radius: 4px 4px 0px 0px;
+        position: sticky;
+        top: 0px;
+        z-index: 3;
 }
 .body-container-left{
         
@@ -115,7 +130,7 @@
         overflow-x: hidden;
         overflow-y: auto;
         align-items: center;
-        padding-top: 5px;
+        padding: 5px;
 
       
 }

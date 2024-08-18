@@ -44,7 +44,8 @@ import { DisinfectantsOfTableComponent } from './pages/disinfectants-of-table/di
 import { ToastrModule } from 'ngx-toastr';
 import {MatListModule} from '@angular/material/list';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
-
+import { QrPageOrderComponent } from './pages/orders-page/qr-page-order/qr-page-order.component';
+import { QRCodeModule } from 'angularx-qrcode';
 // const MyDefaultTooltipOptions: TooltipOptions = {
 //   'placement':'bottom',
 //   'show-delay': 200,
@@ -63,7 +64,8 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
   SettingsPageComponent,
   DialogRowDataGeneralComponent,
   TableQualityFormsComponent,
-  DisinfectantsOfTableComponent],
+  DisinfectantsOfTableComponent,
+  QrPageOrderComponent],
   imports: [
     CommonModule,
     SidebarModule,
@@ -96,7 +98,11 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     MatButtonModule,
     CanvasJSAngularChartsModule,
     MultiSelectModule,
-    ToastrModule.forRoot({positionClass:'bottom'}),
+    ToastrModule.forRoot({positionClass: 'toast-top-right',
+      preventDuplicates: false,
+      progressBar:true,
+      extendedTimeOut:1000,}),
+    QRCodeModule,
     
   ],
   providers:[],
@@ -109,7 +115,7 @@ export class AppModule {
         this.primengConfig.ripple = true;
         this.primengConfig.zIndex = {
           modal: 1100,    // dialog, sidebar
-          overlay: 1000,  // dropdown, overlaypanel
+          overlay: 1100,  // dropdown, overlaypanel
           menu: 1000,     // overlay menus
           tooltip: 1100   // tooltip
       };

@@ -33,8 +33,8 @@ export class GeneralHeaderTables{
    ]
    
    CustomerTable=[
-      {nameHebraw:"קוד סיטונאי",nameEnglish:"codeWholesalers"},
-      {nameHebraw:"שם סיטונאי",nameEnglish:"nameWholesalers"},
+      {nameHebraw:"קוד סיטונאי",nameEnglish:"code"},
+      {nameHebraw:"שם סיטונאי",nameEnglish:"name"},
       {nameHebraw:"עיר",nameEnglish:"city"},
       {nameEnglish:"actions",nameHebraw:"פעולות"},]
 
