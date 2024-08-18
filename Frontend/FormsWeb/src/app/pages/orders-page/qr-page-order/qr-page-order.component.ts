@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataInformaion } from '../data-informaion';
+import { RestApiService } from '$src/app/services/rest-api.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-qr-page-order',
@@ -15,8 +17,14 @@ export class QrPageOrderComponent implements OnInit {
     {nameWholesalers:'בר פינסקר 1804',surfaces:[{size:"80",type:"שוק",numberSurface:""}],amountSurface:1},
     {nameWholesalers:'בר פינסקר 1804',surfaces:[{size:"80",type:"שוק",numberSurface:""},{size:"80",type:"שוק",numberSurface:""},],amountSurface:2},
   ]
+  constructor(private restApi:RestApiService,private route: ActivatedRoute){}
   ngOnInit(): void {
-  
+    this.route.params.subscribe((params:Params)=>{
+      this.restApi.getSpecificeOrder(`${params['reference']}`).subscribe(data=>{
+        this.dataQr=data
+      })
+    })
 
   }
+  
 }

@@ -1,31 +1,44 @@
 <!-- <p>qr-page-order works!</p> -->
 <div style="padding: 15px;" >
-   <div class="container-general" style="margin-top: -20px;">
+   <div class="container-general">
       <div class="header-container">
          <h1>ברקודים</h1>
+         <h2 ><u>{{dataQr['order_data']['date_order']}} סהכ משטחים להזמנה:  {{dataQr['order_data']['total_surface']}}</u></h2>
       </div>
       <div class="body-container" style="overflow-x: hidden;overflow-y: hidden !important;">
-         <div *ngFor="let surf of dataQr">
-         <div class="column" style="text-align: center;">
-            <div  style="border: 1px solid #ccc;border-radius: 4px;padding: 5px;margin-bottom: 5px;width: 100%;">
-                  <span>{{surf.nameWholesalers}}</span>
-               </div>
-              
-               <div [class]="surf.surfaces.length>1?'container-body-boxes-towBox':'container-body-boxes-oneBox'">
-                
-                  <ng-container *ngFor="let qr of surf.surfaces">
-                        <div style="border: 1px solid #ccc;border-radius: 4px;width: auto;height: 150px;padding: 5px;text-align: center;">
-                              <h2 style="border: 1px solid #ccc;border-radius: 4px;padding: 3px;margin-bottom: 0px;font-size: 1.1rem;">{{qr.size}} - {{qr.type}}</h2>
-                              <qrcode [qrdata]="'Your data string'" [width]="100" [errorCorrectionLevel]="'M'"></qrcode>
-                        </div>
-                      
-                      
-                  </ng-container>
+
+            <div *ngFor="let surf of dataQr['details_data']">
+      
+            <div class="column" style="text-align: center;">
+               <div style="display:flex;gap: 5px;">
+               <div  style="border: 1px solid #ccc;border-radius: 4px;padding: 5px;margin-bottom: 5px;width: 10%;background-color: #ccc;height: 120px;display: flex;justify-content: center;align-items: center;">
+                     <span>{{surf.code}} - {{surf.name}}</span>
                   
+                </div>
+                  <ng-container *ngFor="let qr of surf.array">
+                     <div class='box-details'>
+                        <ng-container>
+                           <div id="box">
+                              <ng-container *ngIf="qr.number_surface==null">
+                                 <span>אין מספר משטח</span>
+                              </ng-container>
+                              <ng-container *ngIf="qr.number_surface!=null">
+                                 <ng-container *ngFor="let q of qr.number_surface">
+                                    <span>{{q.number}}</span>
+                                    <qrcode  [qrdata]="q.number" [width]="80" [errorCorrectionLevel]="'M'"></qrcode>
+                                 </ng-container>
+                              </ng-container>
+                              <label>{{qr.size}} - {{qr.type}}</label>
+                           </div>
+                        </ng-container>
+                     </div>
+                  </ng-container>
+               <!-- <ng-container *ngIf="surf.array!=undefined"> -->
+                 
+        
                </div>
-             
+               <hr/>
             </div>
          </div>
-      </div>
 
 </div>

@@ -8,6 +8,8 @@ from django.views.decorators.csrf import csrf_exempt
 from setting_page.serilazers import *
 from setting_page.models import *
 from rest_framework import status
+from orders.models import *
+from orders.serilazers import *
 # Create your views here.
 
 # C:\Users\barpi\Desktop\WebFormBostan\bostanHadarom_web_form\backend\setting_page\wholesalers.csv
@@ -44,3 +46,19 @@ def insert_wholesaler(request):
 
 def get_all_wholesaler():
    return wholesalerSerilazers(wholesaler.objects.all(),many=True).data
+
+
+def get_all_wholesaler_to_order(order):
+   new_wholesalers=[]
+   wholesalers=[x[0] for x in list(wholesaler.objects.values_list('code'))]
+   wholesaler_serilazers=wholesalerSerilazers(wholesaler.objects.all(),many=True).data
+   # for wh in wholesalers:
+  
+   for i in order:
+      if(int(i['code']) in wholesalers):
+         wholesaler_serilazers.pop(wholesalers.index(int(i['code'])))
+         wholesalers.pop(wholesalers.index(int(i['code'])))
+         # print(wh['code'],i['code'])
+         # if int(i['code'])!=int(wh['code']):
+   return wholesaler_serilazers
+   

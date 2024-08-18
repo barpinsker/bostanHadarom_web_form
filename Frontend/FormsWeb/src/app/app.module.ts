@@ -98,7 +98,10 @@ import { QRCodeModule } from 'angularx-qrcode';
     MatButtonModule,
     CanvasJSAngularChartsModule,
     MultiSelectModule,
-    ToastrModule.forRoot({positionClass:'bottom'}),
+    ToastrModule.forRoot({positionClass: 'toast-top-right',
+      preventDuplicates: false,
+      progressBar:true,
+      extendedTimeOut:1000,}),
     QRCodeModule,
     
   ],
@@ -112,7 +115,7 @@ export class AppModule {
         this.primengConfig.ripple = true;
         this.primengConfig.zIndex = {
           modal: 1100,    // dialog, sidebar
-          overlay: 1000,  // dropdown, overlaypanel
+          overlay: 1100,  // dropdown, overlaypanel
           menu: 1000,     // overlay menus
           tooltip: 1100   // tooltip
       };

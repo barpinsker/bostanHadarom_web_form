@@ -19,8 +19,8 @@ class orderBoxDetailsSerilazers(serializers.ModelSerializer):
         fields=(
         'reference',
         'reference_order',
-        'name_wholesalers',
-        'code_wholesalers',
+        'name',
+        'code',
         'isChose',
         )
 
@@ -55,8 +55,8 @@ class orderBoxDetailsSerilazersUpdate(serializers.ModelSerializer):
         fields=(
        
         'reference_order',
-        'name_wholesalers',
-        'code_wholesalers',
+        'name',
+        'code',
         'isChose',
         )
 class surfaceSerilazersUpdate(serializers.ModelSerializer):

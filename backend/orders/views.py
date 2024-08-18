@@ -9,6 +9,7 @@ from orders.serilazers import orderSerilazers,orderBoxDetailsSerilazers,surfaceS
 # Create your views here.
 import datetime
 import json
+from setting_page.views import get_all_wholesaler_to_order
 
 def create_reference(nameModel):
  
@@ -27,11 +28,12 @@ def create_order(data_order):
 def create_details_order(data_details,reference_order):
    data_details['reference']=create_reference(OrderBoxDetails)
    data_details['reference_order']=reference_order
+   print(data_details)
    details_serilazers=orderBoxDetailsSerilazers(data=data_details)
    if details_serilazers.is_valid():
       return True,details_serilazers,data_details['reference']
    else:
-      return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
+      return False,details_serilazers
 
 def create_surface_order(data_surface,reference_details_order):
    for surface in data_surface:
@@ -49,18 +51,23 @@ def create(request):
    status_order=[]
    try:
       client_data=JSONParser().parse(request)['data_order']
+      
       if client_data['isNew']==True:
          client_data['reference']=create_reference(Order)
          status_order=create_order(client_data)
       else:
          status_order=order_update(client_data,client_data['total_surface'])
       if status_order[0]==True:
-         status_details_order=create_details_order(client_data['array'][0],client_data['reference'])
-         if status_details_order[0]==True:
-            if create_surface_order(client_data['array'][0]['surfaces'],status_details_order[2])==True:
-               status_details_order[1].save()
-               status_order[1].save()
-               return HttpResponse(status=status.HTTP_201_CREATED)
+         for s in client_data['array']:
+            if s['status']=='new':
+               status_details_order=create_details_order(s,client_data['reference'])
+               if status_details_order[0]==True:
+                  if create_surface_order(s['surfaces'],status_details_order[2])==True:
+                     status_details_order[1].save()
+               else:
+                  print("status details order error:",status_details_order[1].errors)
+         status_order[1].save()
+         return JsonResponse({'reference':client_data['reference']},status=status.HTTP_201_CREATED)
 
    except Order.DoesNotExist or OrderBoxDetails.DoesNotExist or Surface.DoesNotExist:
          return HttpResponse(status=status.HTTP_404_NOT_FOUND)
@@ -108,11 +115,12 @@ def order_surface_update(data):
 def update(request):
    data_client=JSONParser().parse(request)
    new_client_data=data_client['data_order']
-   order_details_status=order_details_update(new_client_data)
+   data_details_client=data_client['data_details']
    order_status=order_update(new_client_data,data_client['total_surface'])
    if(order_status[0]==True):
+      order_details_status=order_details_update(data_details_client)
       if order_details_status[0]==True:
-         order_surface_update(new_client_data)
+         order_surface_update(data_details_client)
          order_details_status[1].save()
       order_status[1].save()
       return HttpResponse(status=status.HTTP_200_OK)
@@ -142,3 +150,32 @@ def get_all_order(request):
       return JsonResponse({'data':array_return_data},status=status.HTTP_202_ACCEPTED)
    except Order.DoesNotExist:
       return HttpResponse(status.HTTP_404_NOT_FOUND)
+   
+
+
+@csrf_exempt
+def get_specific_order(request,reference):
+   order_data=orderSerilazers(Order.objects.get(reference=reference)).data
+   details_order_data=orderBoxDetailsSerilazers(OrderBoxDetails.objects.filter(reference_order=reference),many=True).data
+   surface_data=[]
+   json_insert={}
+   for i in details_order_data:
+      json_insert['name_order']=order_data['date_order']
+      json_insert['name']=i['name']   
+      json_insert['code']=i['code']
+      json_insert['array']=surfaceSerilazers(Surface.objects.filter(reference_order_details=i['reference']),many=True).data
+    
+
+      surface_data.append(json_insert)
+      json_insert={}
+   
+   return JsonResponse({'details_data':surface_data,'order_data':order_data},status=status.HTTP_202_ACCEPTED)
+   
+
+   
+@csrf_exempt
+def get_wholesaler_to_order(request,referenceOrder):
+   wholesaler_array=get_all_wholesaler_to_order(orderBoxDetailsSerilazers(OrderBoxDetails.objects.filter(reference_order=referenceOrder),many=True).data)
+   # for i in wholesaler_array:
+   #    print(i)
+   return JsonResponse({'data_wholesaler':wholesaler_array},status=status.HTTP_200_OK)

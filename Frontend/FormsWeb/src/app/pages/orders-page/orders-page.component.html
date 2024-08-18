@@ -41,35 +41,41 @@
                                                         add                
                                                 </span>
                                         </button>
-                                        <button mat-raised-button style="background-color: #fff;" (click)="moveQrPage()" [disabled]="isEditRow==true">
-                                                <span class="material-symbols-outlined" style="position: relative;top: 3px;" >
-                                                        qr_code
-                                                </span>
-                                        </button>
+                                       
                                 </div>
                                 <div *ngFor="let container of dataSurface;index as indexContainer" [class]="container.isRowEdit==true?'mat-elevation-z8':'container-orderHover'"   [style]="container.isRowEdit==false?'cursor:pointer':'cursor: default'"  style="padding: 10px;margin-bottom: 5px;" >
-                                        <h2  style="background-color: var(--color-dark);color: #fff;margin-bottom: 0px;border-radius: 4px;" [attr.data-toggle]="container.date_order==this.dayDate?'':'collapse'" [attr.data-target]="'#order'+indexContainer" (click)="container.date_order==this.dayDate?'':isEditRowChange(indexContainer)"><mat-icon style="position: relative;top: 5px;">{{container.isRowEdit==false?'lock':'lock_open'}}</mat-icon> ({{container.date_order}}) סה"כ משטחים בהזמנה: {{container.total_surface}} </h2>
+                                        <h2 style="background-color: var(--color-dark);color: #fff;margin-bottom: 0px;border-radius: 4px;" [attr.data-toggle]="container.date_order==this.dayDate?'':'collapse'" [attr.data-target]="'#order'+indexContainer" (click)="container.date_order==this.dayDate?'':isEditRowChange(indexContainer,container.reference)">  
+                                                <button mat-raised-button style="background-color: #fff;margin-left: 10px;" (click)="moveQrPage(container.reference)" [disabled]="container.isRowEdit==false">
+                                                        <span class="material-symbols-outlined" style="position: relative;top: 5px" >
+                                                                qr_code
+                                                        </span>
+                                                </button>
+                                                <mat-icon style="position: relative;top: 5px;">{{container.isRowEdit==false?'lock':'lock_open'}}</mat-icon> ({{container.date_order}}) סה"כ משטחים בהזמנה: {{container.total_surface}}
+                                        </h2>
                                 <div id="{{'order'+indexContainer}}" [class]="container.date_order==this.dayDate?'':'collapse'">
                                 <div style="display: grid;grid-template-columns: repeat( auto-fill, minmax(290px, 1fr) );gap:5px">
                              
                                 <ng-container *ngFor="let box of container.array;index as i">
                                 <div>
-                                        <div style="height: auto;display: flex;gap: 5px;padding: 5px;">
+                                        <div style="height: auto;display: flex;gap: 5px;padding: 5px; z-index: 3;">
                                                 <div [class]="container.isRowEdit==true?'buttons-container mat-elevation-z8':'buttons-container border-boxes'" style="border-radius: 10px;">
-                                                        <div style="width: 100%;max-height: 120px;" >
-                                                                <p-dropdown  [options]="wholesalers" [disabled]="box.isEdit==false || container.isRowEdit==false" [(ngModel)]="box.name_wholesalers" [placeholder]="box.name_wholesalers!=''?box.name_wholesalers:'סיטונאים'" optionLabel="name"[filter]="true"filterBy="{{fliterName}}"[showClear]="false"[style]="{'width':'100%'}" (onChange)="addWholesalers(box.name_wholesalers,i)">
+                                                        <div style="width: 100%;max-height: 120px;" (click)="getAllWholesalerByOrder(container.reference)">
+                                                                <p-dropdown  [options]="wholesalersAfter" [disabled]="box.isEdit==false || container.isRowEdit==false" [(ngModel)]="box.name" [placeholder]="box.name!=''?box.name:'סיטונאים'" optionLabel="name"[filter]="true"filterBy="{{fliterName}}"[showClear]="false"[style]="{'width':'100%'}" (onChange)="addWholesalers(box.name,i)">
                                                                 <ng-template pTemplate="filter"  let-options="options">
                                                                         <div  style="display: grid;gap: 5px; grid-template-columns: 30% 70%;" (click)="$event.stopPropagation()">
                                                                                 <input class="form-control"
                                                                                         type="text"
                                                                                         pInputText
                                                                                         placeholder="קוד"
+                                                                                        style="height: 35px;"
                                                                                         [(ngModel)]="codeWholesalersFilter"
                                                                                         (keyup)="customFilterFunction($event, options);fliterName='code'" />
+                                                                                        
 
                                                                                 <input class="form-control"
                                                                                         type="text"
                                                                                         pInputText
+                                                                                        style="height: 35px;"
                                                                                         placeholder="שם סיטונאי"
                                                                                         [(ngModel)]="nameWholesalersFilter"
                                                                                         (keyup)="customFilterFunction($event, options);fliterName='name'" />
@@ -77,22 +83,18 @@
                                                                             
                                                                         </div>
                                                                     </ng-template>
-                                                                <ng-template let-country pTemplate="selectedItem" >
-                                                                        <span>{{country.code}}</span> - <span>{{country.name}}</span>
+                                                                <ng-template let-wholesaler pTemplate="selectedItem">
+                                                                                <span style="margin-right: 30px;">{{wholesaler.code}}</span> - <span >{{wholesaler.name}}</span>
                                                                 </ng-template>
-                                                                <ng-template let-country pTemplate="item">
-                                                                        
-                                                                                <span >{{country.code}}</span> - <span>{{country.name}}</span>
-                                                                       
-                                                                        
-                                                                        
+                                                                <ng-template let-wholesalerItem pTemplate="item" >
+                                                                                <span style="margin-right: 30px;">{{wholesalerItem.code}}</span> - <span >{{wholesalerItem.name}}</span> 
                                                                 </ng-template>
                                                                 </p-dropdown>    
                                                                
                                                         </div>
                                                         <div style="display: flex;gap: 5px;flex-wrap: wrap;">
                                                                        <!-- [disabled]="box.isEdit==false||container.isRowEdit==false" -->
-                                                                        <button class="sizeIconButton" mat-raised-button [disabled]="box.isEdit==false||container.isRowEdit==false"  (click)="saveWholesalers()">
+                                                                        <button class="sizeIconButton" mat-raised-button [disabled]="box.isEdit==false||container.isRowEdit==false"  (click)="saveWholesalers(i)">
                                                                                 <div style="display: flex ;flex-direction: column; align-items: center;justify-content: center;position: relative;top: 2px;width: 45px;">
                                                                                 <span class="material-symbols-outlined" >
                                                                                 save

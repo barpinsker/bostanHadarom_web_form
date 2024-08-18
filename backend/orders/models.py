@@ -12,8 +12,8 @@ class Order(models.Model):
 class OrderBoxDetails(models.Model):
    reference=models.IntegerField(primary_key=True,blank=False,default=0)
    reference_order=models.IntegerField(blank=True,default="")
-   name_wholesalers=models.CharField(max_length=150,blank=True,default="")
-   code_wholesalers=models.CharField(max_length=150,blank=True,default="")
+   name=models.CharField(max_length=150,blank=True,default="")
+   code=models.CharField(max_length=150,blank=True,default="")
    isChose=models.BooleanField(blank=True,default=False)
    
 

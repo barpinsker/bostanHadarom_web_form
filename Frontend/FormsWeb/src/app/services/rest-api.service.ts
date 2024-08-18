@@ -59,6 +59,9 @@ updateOrder(data:any,date_order:any):Observable<any>{
 getAllOrder():Observable<any>{
   return this.http.get(`${this.baseUrl}/get_all_order`)
 }
+getSpecificeOrder(reference:any):Observable<any>{
+  return this.http.get(`${this.baseUrl}/get_specific_order/${reference}`)
+}
 
 ////////////////////////////////////////
 // wholesaler funcrtion
@@ -66,5 +69,7 @@ getAllOrder():Observable<any>{
 insertWholesaler(data:any):Observable<any>{
   return this.http.post(`${this.baseUrl}/insert-wholesaler/`,data)
 }
-
+getWholesalerToOrder(referenceOrder:any):Observable<any>{
+  return this.http.get(`${this.baseUrl}/get-wholesaler-to-order/${referenceOrder}`)
+}
 }
