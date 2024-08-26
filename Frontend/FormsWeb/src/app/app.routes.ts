@@ -7,6 +7,8 @@ import { SettingsPageComponent } from './pages/settings-page/settings-page.compo
 import { TableQualityFormsComponent } from './pages/table-quality-forms/table-quality-forms.component';
 import { DisinfectantsOfTableComponent } from './pages/disinfectants-of-table/disinfectants-of-table.component';
 import { QrPageOrderComponent } from './pages/orders-page/qr-page-order/qr-page-order.component';
+import { FormDeliveryControlComponent } from './pages/forms/form-delivery-control/form-delivery-control.component';
+import { ControlTableComponent } from './pages/control-table/control-table.component';
 export const routes: Routes = [
         {path:"",redirectTo:"/desktop",pathMatch:"full"},
         {path:"desktop",component:DesktopComponent},
@@ -15,7 +17,9 @@ export const routes: Routes = [
         {path:"settings-page",component:SettingsPageComponent},
         {path:"table-quality-forms",component:TableQualityFormsComponent},
         {path:"disinfectants-of-table",component:DisinfectantsOfTableComponent},
-        {path:"qr-page-order",component:QrPageOrderComponent}
+        {path:"qr-page-order",component:QrPageOrderComponent},
+        {path:'form-delivery-control',component:FormDeliveryControlComponent},
+        {path:"control-table",component:ControlTableComponent},
         // {path:'desktop',loadChildren: () => import('./app.module').then(m => m.AppModule)},
 
 ];

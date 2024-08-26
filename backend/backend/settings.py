@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'table_of_standards',
     'orders',
     'setting_page',
+    'forms',
 
 ]
 

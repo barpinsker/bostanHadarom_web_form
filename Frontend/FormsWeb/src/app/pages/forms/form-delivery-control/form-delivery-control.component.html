@@ -1,0 +1,116 @@
+
+<div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">חתימת העובד</h1>
+        
+      </div>
+      <div style="display: flex;justify-content: center;align-items: center;padding: 5px;">
+         <div  style="border: 3px dotted #ccc;border-radius: 4px;">
+            <signature-pad [options]="signaturePadOptions"(onBeginEvent)="drawStart()" ></signature-pad>
+         </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="clearDraw()">ניקוי</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="drawComplete()">שמירה</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <div style="padding: 10px;">
+
+   <div class="container-general" style="margin-top: 10px;">
+      <div>
+         <app-general-header-forms [nameForm]="'בקרת שילוח'" [edition]="1" [formDate]="'19.08.24'" [pageNo]="6" [effectiveDate]="'1.10.17'"></app-general-header-forms>
+         <div style="display: flex;gap: 5px;margin-bottom: 15px;">
+            <button mat-raised-button style="background-color: var(--color-buttons);color: #fff;" *ngIf="dataForm.is_edit==true || dataForm.status_form=='new'" (click)="dataForm.status_form=='new'?saveForm():updateForm()">שמירה</button>
+            <!-- <button mat-raised-button style="background-color: var(--color-buttons);color: #fff;" *ngIf="dataForm.is_edit==true && dataForm.status_form!='new'">עריכה</button> -->
+            <button mat-raised-button style="background-color: var(--color-buttons);color: #fff;" *ngIf="dataForm.status_form!='new'" (click)="openEditForm()">{{dataForm.is_edit==false?'פתיחה לעריכה':'סגירה לעריכה'}}</button>
+         </div>
+      </div>
+      <div class="table-one">
+         <ng-container *ngFor="let header of headersTable['headerTable1']">
+            <div style="flex: 33%;grid-area: 1;" class="field" *ngIf="header.nameEnglish!='typeOfProduce'">
+               <input [disabled]="dataForm['is_edit']==false ||dataForm['is_finish']==true" class="form-control" id="{{header.nameEnglish}}"  required autocomplete="off" [(ngModel)]="dataForm['json_field'][0][header.nameEnglish]">
+               <label class="labelSize" for="{{header.nameEnglish}}"  title="{{header.nameHebraw}}" data-title=""></label>
+            </div>
+            
+            <div *ngIf="header.nameEnglish=='typeOfProduce'" style="border: 1px solid #ccc;padding: 8px;position: relative;bottom: 8px;height: 50px;border-radius: 4px;">
+               <span style="margin-left: -50px;position: relative;bottom: 25px;background-color: #fff;border: 1px solid #ccc;border-radius: 4px;padding: 1px 6px;font-size: 14px;">סוג תוצרת</span>
+               <input [disabled]="dataForm['is_edit']==false ||dataForm['is_finish']==true" type="checkbox" style="width: 20px;height: 20px;position: relative;top: 5px;"  [value]="header.valueChackBox['displayed']" (ngModelChange)="header.valueChackBox['displayed']=true;header.valueChackBox['raw']=false;dataForm['json_field'][0][header.nameEnglish]=header.valueChackBox" [(ngModel)]="header.valueChackBox['displayed']"  ><label style="margin-bottom: 0px;padding: 5px;position: relative;top: 0px;">{{header.valueTag[0]}}</label>
+               <span style="font-size: 1.3rem;font-weight: 900;margin-left: 5px;">/</span>
+               <input [disabled]="dataForm['is_edit']==false ||dataForm['is_finish']==true" type="checkbox" style="width: 20px;height: 20px;position: relative;top: 5px;"  [value]="header.valueChackBox['raw']" (ngModelChange)="header.valueChackBox['raw']=true;header.valueChackBox['displayed']=false;dataForm['json_field'][0][header.nameEnglish]=header.valueChackBox"   [(ngModel)]="header.valueChackBox['raw']" ><label style="margin-bottom: 0px;padding: 5px;position: relative;top: 0px;">{{header.valueTag[1]}}</label>
+            </div>
+         </ng-container>
+      </div>
+      <div class="table-tow">
+         <ng-container *ngFor="let header of headersTable['headerTable2']">
+            <div style="flex: 33%;grid-area: 1;" class="field" >
+               <input [disabled]="dataForm['is_edit']==false ||dataForm['is_finish']==true" class="form-control" id="{{header.nameEnglish}}"  required autocomplete="off" [(ngModel)]="dataForm['json_field'][0][header.nameEnglish]">
+               <label class="labelSize" for="{{header.nameEnglish}}"  title="{{header.nameHebraw}}" data-title=""></label>
+            </div>
+           
+         </ng-container>
+      </div>
+      <div>
+      <table id="table3" style="width: 100%; table-layout: fixed;">
+         <thead>
+                 <tr>
+                         <ng-container *ngFor="let header of headersTable['headerTable3']">
+                                 <th>{{header.type}}</th>
+                         </ng-container>
+                 </tr>
+         </thead>
+         <tbody>
+                 <ng-container *ngFor="let header of headersTable['headerTable3'];index as index">
+                     <ng-container *ngIf="header.type=='נושא'">
+                         <ng-container *ngFor="let objects of header.array">
+                         <tr>
+                             <td *ngIf="header.type=='נושא'" [attr.rowspan]="objects.arraow">{{objects.nameHebraw}}</td>
+                         </tr>              
+                         <tr *ngFor="let data of objects.jsonField;index as i">          
+                         <td *ngIf="header.type=='נושא'">{{data.nameHebraw}}</td>
+                         <td>
+                           <input [disabled]="dataForm['is_edit']==false ||dataForm['is_finish']==true" type="checkbox" style="width: 20px;height: 20px;position: relative;top: 5px;"  [value]="!data.valueChackBox['proper']" (ngModelChange)="data.valueChackBox['proper']=true;data.valueChackBox['abnormal']=false;dataForm['json_field'][0][data.nameEnglish]=data.valueChackBox" [(ngModel)]="data.valueChackBox['proper']"><label style="margin-bottom: 0px;padding: 5px;position: relative;top: 0px;">תקין</label>
+                           <span style="font-size: 1.3rem;font-weight: 900;margin-left: 5px;">/</span>
+                           <input [disabled]="dataForm['is_edit']==false ||dataForm['is_finish']==true" type="checkbox" style="width: 20px;height: 20px;position: relative;top: 5px;"  [value]="!data.valueChackBox['abnormal']" (ngModelChange)="data.valueChackBox['proper']=false;data.valueChackBox['abnormal']=true;dataForm['json_field'][0][data.nameEnglish]=data.valueChackBox" [(ngModel)]="data.valueChackBox['abnormal']"><label style="margin-bottom: 0px;padding: 5px;position: relative;top: 0px;">לא תקין</label>
+                        </td>
+                           <td><input [disabled]="dataForm['is_edit']==false ||dataForm['is_finish']==true" class="form-control" style="height: 40px;"  placeholder="פעולת מתקנת" [(ngModel)]="data.valueInput"></td>
+                         <tr>
+                     </ng-container>
+                     </ng-container>
+               
+             </ng-container>
+             </tbody>
+ 
+      </table>
+      </div>
+      <div class="table-trhee" style="margin-top: 20px;flex-wrap:wrap;gap: 10px;">
+         <ng-container *ngFor="let header of headersTable['headerTable4']">
+            <div *ngIf="header.nameEnglish!='signature'" [style]="header.nameEnglish=='remakes'?'flex:100%;flex-basis:100%;margin-bottom:12px':'flex:50%;flex-basis:auto;margin-bottom:12px'" class="field">
+               <input [disabled]="dataForm['is_edit']==false ||dataForm['is_finish']==true" class="form-control"  id="{{header.nameEnglish}}"  required autocomplete="off" [(ngModel)]="dataForm['json_field'][0][header.nameEnglish]">
+               <label class="labelSize" for="{{header.nameEnglish}}"  title="{{header.nameHebraw}}" data-title=""></label>
+            </div>
+            <div *ngIf="header.nameEnglish=='signature'" [style]="this.dataForm['json_field'][0]['signature'].length==0?'flex: 100%;flex-basis: auto;':'flex: 0;flex-basis: auto;    position: relative;top: -6px;'">
+            <div *ngIf="this.dataForm['json_field'][0]['signature'].length!=0" style="border: 1px solid #ccc;border-radius: 4px;background-color: #ccc;">
+               <span style="position: relative;
+               bottom: 10px;
+               left: -7px;
+               border: 1px solid #ccc;
+               padding: 0px 3px;
+               border-radius: 4px;
+               background: #fff;">{{header.nameHebraw}}</span>
+               <img [src]="this.dataForm['json_field'][0]['signature']" height="50" width="150px" style="margin-top: -20px;">
+            </div>
+            <div *ngIf="this.dataForm['json_field'][0]['signature'].length==0">
+           
+            <button class="button-style" [disabled]="dataForm['is_edit']==false ||dataForm['is_finish']==true" mat-raised-button style="height: 50px;position: relative;bottom: 7px;width: 100%;background-color: var(--color-buttons);color: #fff;" *ngIf="header.nameEnglish=='signature' " type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+               חתימה
+             </button>
+            </div>
+         </div>
+         </ng-container>
+      </div>
+   </div>
+</div>

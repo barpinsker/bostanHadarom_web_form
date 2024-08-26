@@ -22,12 +22,12 @@ links:Array<any>=[
   {namePage:'טבלת תקנים',route:"/table-of-standards",icon:"table"},
   {namePage:'סטים',route:"",icon:"table"},
   {namePage:'טפסי איכות',route:"/table-quality-forms",icon:"table"},
-  {namePage:'טפסי בקרה',route:"/disinfectants-of-table",icon:"table"},
-  {namePage:'חומרי חיטוי',route:"",icon:"table"}
+  {namePage:'טפסי בקרה',route:"/control-table",icon:"table"},
+  {namePage:'חומרי חיטוי',route:"/disinfectants-of-table",icon:"table"}
 ]},
 {namePage:"מגדלים",router:"/grower-page",icon:"group",active:false,dropDown:false},
 {namePage:"תעודות כניסה",router:"/certificates-page",icon:"library_books",active:false,dropDown:false},
-{namePage:'טפסים',route:"",icon:"description",active:false,dropDown:false},
+{namePage:'טפסים',route:"/form-delivery-control",icon:"description",active:false,dropDown:false},
 {namePage:'הגדרות',route:"settings-page",icon:"settings",active:false,dropDown:false},
   ]
   isOpenMenu:boolean=false;

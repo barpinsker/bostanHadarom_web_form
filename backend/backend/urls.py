@@ -22,5 +22,6 @@ urlpatterns = [
     path('api/',include('table_of_standards.urls')),
     path('api/',include('orders.urls')),
     path('api/',include('setting_page.urls')),
+    path('api/',include('forms.urls')),
 
 ]
