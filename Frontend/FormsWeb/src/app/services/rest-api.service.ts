@@ -72,4 +72,21 @@ insertWholesaler(data:any):Observable<any>{
 getWholesalerToOrder(referenceOrder:any):Observable<any>{
   return this.http.get(`${this.baseUrl}/get-wholesaler-to-order/${referenceOrder}`)
 }
+
+
+// function forms
+createForm(data:any):Observable<any>{
+  return this.http.post(`${this.baseUrl}/create-form/`,data)
 }
+updateForm(reference:any,data:any):Observable<any>{
+  return this.http.put(`${this.baseUrl}/update-form/`,data)
+}
+getSpecificForm(reference:any):Observable<any>{
+  return this.http.get(`${this.baseUrl}/get-specific-form/${reference}`)
+}
+getAllFormControl():Observable<any>{
+  return this.http.get(`${this.baseUrl}/get-all-form-control`)
+}
+}
+
+

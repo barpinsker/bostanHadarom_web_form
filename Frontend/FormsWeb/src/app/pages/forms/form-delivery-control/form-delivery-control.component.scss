@@ -1,0 +1,27 @@
+table{
+   width: 100%;
+   table-layout: fixed;
+}
+thead th{
+   text-align: center;
+   border: 1px solid #ccc;
+   height: 30px;
+}
+.table-one,.table-tow,.table-trhee{
+   display: flex;
+   gap:10px;
+   align-items: center;
+   width: 100%;
+  
+
+}
+td{
+   border: 1px solid #ccc;
+   padding: 5px;
+   text-align: center;
+
+}
+.button-style:disabled{
+   background-color:#ccc !important;
+   color: #333 !important;
+}

@@ -1,0 +1,23 @@
+<div style="padding: 10px;">
+
+   <div class="container-general" style="margin-top: 10px;">
+      
+      <div class="general-table mat-elevation-z8" >
+         <table>
+          
+            <thead>
+               <tr>
+                  <th *ngFor="let header of headerTable">{{header.nameHebraw}}</th>
+               </tr>
+            </thead>
+
+            <tbody>
+               <ng-container *ngFor="let data of dataTable">
+                  <tr (click)="moveForm(data['reference'])">
+                     <td *ngFor="let header of headerTable">{{data[header.nameEnglish]}}</td>
+                  </tr>
+               </ng-container>
+            </tbody>
+         </table>
+      </div>
+</div>

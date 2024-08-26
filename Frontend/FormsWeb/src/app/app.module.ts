@@ -46,6 +46,10 @@ import {MatListModule} from '@angular/material/list';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { QrPageOrderComponent } from './pages/orders-page/qr-page-order/qr-page-order.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { GeneralHeaderFormsComponent } from './pages/forms/general-header-forms/general-header-forms.component';
+import { FormDeliveryControlComponent } from './pages/forms/form-delivery-control/form-delivery-control.component';
+import { ControlTableComponent } from './pages/control-table/control-table.component';
+import { SignaturePadModule } from 'angular2-signaturepad';
 // const MyDefaultTooltipOptions: TooltipOptions = {
 //   'placement':'bottom',
 //   'show-delay': 200,
@@ -65,7 +69,7 @@ import { QRCodeModule } from 'angularx-qrcode';
   DialogRowDataGeneralComponent,
   TableQualityFormsComponent,
   DisinfectantsOfTableComponent,
-  QrPageOrderComponent],
+  QrPageOrderComponent,GeneralHeaderFormsComponent,FormDeliveryControlComponent,ControlTableComponent],
   imports: [
     CommonModule,
     SidebarModule,
@@ -103,6 +107,7 @@ import { QRCodeModule } from 'angularx-qrcode';
       progressBar:true,
       extendedTimeOut:1000,}),
     QRCodeModule,
+    SignaturePadModule,
     
   ],
   providers:[],
