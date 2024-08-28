@@ -30,10 +30,12 @@ aside .sidebar-rigth{
         transition: all ease-in-out .3s;
         z-index: 6;
     }
-aside .sidebar-body{
-        max-height: 91%;
+aside .body-sidebar-scroll{
+        height: 100%;
+        
         overflow-y: auto;
         overflow-x: hidden;
+        z-index: 2;
 }
 aside .header-sidebar-rigth{
         display: flex;
@@ -52,21 +54,25 @@ aside .sidebar-rigth .sidebar-body a{
       position: relative;
       transition: all 0.3s ease;
       width: 100%;
-     
+     z-index: 3;
     }
 
 a{
 text-decoration: none;
 }
-#footer-item-id{
+
+aside .sidebar-rigth #footer-item-id{
         position: absolute;
         opacity: 1;
         bottom: 0px;
         padding: 5px;
+        height: 50px;
         // padding-right: 5px;
         border-top: 1px solid var(--color-info-dark);
         transition: all ease-in-out .3s;
         width: 100%;
+        z-index: 8;
+        background-color: #fff;
         
 }
 
@@ -81,21 +87,6 @@ aside .sidebar-rigth a:hover {
  
   transition: all .3s ease-in-out ;
   background-color: var(--color-light);
-
-
-
-// box-shadow: inset 0px 0px 3px 2px var(--color-info-dark);
-
-// h3,span{
-//         color: var(--color-info-dark) !important;
-//         text-decoration: underline;
-        
-// }
-// span{
-//         margin-right: 0.6rem;
-// }
-// background-color: var(--color-light);
-
 
 }
 .active-item {
@@ -151,6 +142,53 @@ aside .sidebar-rigth a:hover {
   gap: 5px;
   align-items: center;
 }
+#dropleft{
+        background-color: var(--color-info-dark);
+        position: relative;
+        transform: translateX(200px);
+        border-radius: 4px 0px 0px 4px;
+        transition: all ease-in-out 3s;
+        display: flex;
+        flex-direction: column;
+     
+        width:200px;
+        // background-color: var(--color-white);
+        // box-shadow: var(--box-shadow);
+}
+#dropleft a{
+        display: flex;
+        align-items: center;
+        color:#fff;
+        height: 3rem;
+        gap: 1rem;
+        position: relative;
+        transition: all 0.3s ease;
+        width: 100%;
+        padding-right: 5px;
+        h3,span{
+        color: #fff !important;}
+        span{
+                margin-right: 5px;
+        }
+        
+}
+#dropleft a:not(:last-child){
+        border-bottom: 1px solid #fff;
+}
+#dropleft a:hover{
+        span{
+        margin-right: 0.3rem;
+        transition: all .3s ease ;
+        padding-right: 5px;
+        border-right: 5px solid var(--color-white);
+        }
+        transition: all .3s ease-in-out ;
+        background-color: #333;
+}
+// #dropleft > ul{
+//         color: #fff;
+//         text-decoration: none;
+// }
 // .imageStyle{
 //         width: 80px;
 //         height: 80px;

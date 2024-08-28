@@ -13,12 +13,19 @@
             <img class="img-logo" src="./assets/Image/LogoBustanHadraom.png" style="width: 80px;height: 50px;padding-right: 5px;padding-bottom: 5px;">
             <button id="buttonMenu" (click)="openAccordion()" mat-icon-button style="display: flex;align-items: center;transform: translateX(-65px);"><span  class="material-symbols-outlined">close</span></button>
         </div>
+        <div class="body-sidebar-scroll">
         <ng-container *ngFor="let item of links">
-        <a href="{{item.route}}" *ngIf="item.dropDown==false">
+        <a href="{{item.route}}" *ngIf="item.dropDown==false&&item.namePage!='טפסים'">
             <span class="material-symbols-outlined">{{item.icon}}</span>
             <h3>{{item.namePage}}</h3>
         </a>
-        <a *ngIf="item.dropDown==true" (click)="item.active=!item.active" [class]="item.active==true?'active-item':''"  data-bs-toggle="collapse" href="#collapseExample" role="collapsed" aria-expanded="false" aria-controls="collapseExample">
+      
+        <a type="button" class="dropdown-toggle" (click)="openDropLeft();item.active=!item.active;"  *ngIf="item.dropDown==false&&item.namePage=='טפסים'"[class]="item.active==true?'active-item':''">
+            <span class="material-symbols-outlined">{{item.icon}}</span>
+            <h3>{{item.namePage}}</h3> 
+        </a>
+        
+        <a *ngIf="item.dropDown==true" (click)="item.active=!item.active;openDropDown(item.active)" [class]="item.active==true?'active-item':''"  data-bs-toggle="collapse" href="#collapseExample" role="collapsed" aria-expanded="false" aria-controls="collapseExample">
             <span class="material-symbols-outlined">{{item.icon}}</span>
             <h3>{{item.namePage}}</h3>
             <span class="material-symbols-outlined class-icon-down-up" style="margin-right: 0px;text-decoration: none;border-right: 0px;" *ngIf="item.active==false">keyboard_arrow_down</span>
@@ -37,10 +44,35 @@
             </div>
         </ng-container>
         </ng-container>
+    </div>
         <div id="footer-item-id" style="display: flex;flex-direction: row;gap: 5px;align-items: center;">
             <img src="./assets/Image/avatarBoy1.png" class="cricle">
-            <h3>בר פינסקר</h3>
+            <h3 style="margin-bottom: 0px;">בר פינסקר</h3>
         </div>
+    
     </div>
 </div>
+
+<ng-container >
+<div id="dropleft">
+   <h2 style="color: #fff;
+   padding-right: 5px;
+   margin-bottom: 0px;
+   height: 50px;
+   text-align: center;
+   position: relative;
+   top: 7px;">טפסים</h2>
+   <span style="width: 100%;border-bottom: 1px solid #fff;"></span>
+   <ng-container *ngFor="let form of links[5].array">
+        <a type="button" href="{{form.route}}">
+            <span class="material-symbols-outlined">description</span>
+            <h3>{{form.nameForm}}</h3>
+        </a>
+    </ng-container>
+    <!-- <a type="button">Another action</a>
+    <a  type="button">Something else here</a> -->
+      <!-- Dropdown menu links -->
+   
+</div>
+</ng-container>
 </aside>
