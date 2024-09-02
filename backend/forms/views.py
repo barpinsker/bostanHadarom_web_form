@@ -21,7 +21,21 @@ def create_reference(nameModel):
       return nameModel.objects.all().values_list('reference',flat=True).order_by('-reference').first()+1
 
 
-
+@csrf_exempt
+def get_is_helf_forms(request):
+   json_form={}
+   array_forms=[]
+   try:
+      forms_is_helf=formSerilazers(Form.objects.filter(is_finish=False),many=True).data
+      for form in forms_is_helf:
+         json_form['name_form']=form['name_form']
+         json_form['reference']=form['reference']
+         json_form['router']=form['router']
+         array_forms.append(json_form)
+         json_form={}
+      return JsonResponse({'forms':array_forms},status=status.HTTP_202_ACCEPTED)
+   except Form.DoesNotExist:
+      return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 
 @csrf_exempt
 def get_all_forms_conttrol(request):
@@ -37,6 +51,7 @@ class OfficialEventFrom(APIView):
       try:
          data_client=JSONParser().parse(request)
          data_client=data_client['form_data']
+         print(data_client)
          data_client['reference']=create_reference(Form)
          form_serilazers=formSerilazers(data=data_client)
          if form_serilazers.is_valid():

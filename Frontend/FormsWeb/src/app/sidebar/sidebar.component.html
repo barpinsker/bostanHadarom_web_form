@@ -62,11 +62,16 @@
    text-align: center;
    position: relative;
    top: 7px;">טפסים</h2>
+   
    <span style="width: 100%;border-bottom: 1px solid #fff;"></span>
    <ng-container *ngFor="let form of links[5].array">
+ 
         <a type="button" href="{{form.route}}">
             <span class="material-symbols-outlined">description</span>
+  
             <h3>{{form.nameForm}}</h3>
+            {{form.status_form!=''?' - ':''}}
+            <h3 style="color:red !important">{{form.status_form}}</h3>
         </a>
     </ng-container>
     <!-- <a type="button">Another action</a>

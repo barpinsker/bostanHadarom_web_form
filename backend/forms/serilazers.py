@@ -13,6 +13,8 @@ class formSerilazers(serializers.ModelSerializer):
         'date_form',
         'is_edit',
         'status_form',
+        'router',
+        'is_finish',
         'json_field'
         )
 class formUpdateSerilazers(serializers.ModelSerializer):
@@ -22,7 +24,9 @@ class formUpdateSerilazers(serializers.ModelSerializer):
         'name_form',
         'date_form',
         'is_edit',
+        'is_finish',
         'status_form',
+        'router',
         'json_field'
         )
 

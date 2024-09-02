@@ -46,6 +46,7 @@ export class FormDeliveryControlComponent implements OnInit{
     this.dataForm['is_edit']=true
     this.dataForm['json_field']=[{}]
     this.dataForm['json_field'][0]['signature']=''
+    this.dataForm['router']='/form-delivery-control/'
     }
     this.dataForm['is_finish']=false
   }

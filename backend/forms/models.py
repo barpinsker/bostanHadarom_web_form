@@ -9,6 +9,8 @@ class Form(models.Model):
    name_form=models.CharField(max_length=150,blank=False,default="")
    date_form=models.CharField(max_length=150,blank=True,default="")
    is_edit=models.BooleanField(default=False)
+   is_finish=models.BooleanField(default=False)
    status_form=models.CharField(max_length=150,blank=False,default="new")
    json_field=ArrayField(JSONField(null = True,blank = True), blank=True, null = True)
+   router=models.CharField(max_length=150,blank=True,default="")
    

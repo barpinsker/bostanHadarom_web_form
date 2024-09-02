@@ -9,6 +9,7 @@ import { DisinfectantsOfTableComponent } from './pages/disinfectants-of-table/di
 import { QrPageOrderComponent } from './pages/orders-page/qr-page-order/qr-page-order.component';
 import { FormDeliveryControlComponent } from './pages/forms/form-delivery-control/form-delivery-control.component';
 import { ControlTableComponent } from './pages/control-table/control-table.component';
+import { KanatFormComponent } from './pages/forms/kanat-form/kanat-form.component';
 export const routes: Routes = [
         {path:"",redirectTo:"/desktop",pathMatch:"full"},
         {path:"desktop",component:DesktopComponent},
@@ -19,6 +20,7 @@ export const routes: Routes = [
         {path:"disinfectants-of-table",component:DisinfectantsOfTableComponent},
         {path:"qr-page-order",component:QrPageOrderComponent},
         {path:'form-delivery-control',component:FormDeliveryControlComponent},
+        {path:'kant-form',component:KanatFormComponent},
         {path:"control-table",component:ControlTableComponent},
         // {path:'desktop',loadChildren: () => import('./app.module').then(m => m.AppModule)},
 

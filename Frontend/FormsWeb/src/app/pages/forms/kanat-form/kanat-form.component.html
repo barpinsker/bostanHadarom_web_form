@@ -1,0 +1,77 @@
+
+
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h1 class="modal-title">שאלת ביטחון</h1>
+         
+       </div>
+       <div style="display: flex;justify-content: right;align-items: right;padding: 5px;">
+           <h3 style="margin-bottom: 0px;">האם הטופס גמור</h3>
+       </div>
+       <div class="modal-footer">
+         <button type="button" mat-raised-button style="background-color: var(--color-buttons);color: #fff;" data-bs-dismiss="modal" (click)="dataForm.status_form=='new'?saveForm(true):updateForm(true)">כן</button>
+         <button type="button" mat-raised-button style="background-color: var(--color-buttons);color: #fff;" data-bs-dismiss="modal" (click)="dataForm.status_form=='new'?saveForm(false):updateForm(false)">לא</button>
+         <button type="button" mat-raised-button  data-bs-dismiss="modal">ביטול</button>
+       </div>
+     </div>
+   </div>
+ </div>
+
+<div style="padding-top: 15px;">
+   <div class="container-general">
+   <!-- buttons -->
+   <div style="display: flex;gap: 5px;margin-bottom: 15px;">
+      <button mat-raised-button style="background-color: var(--color-buttons);color: #fff;" *ngIf="(dataForm.is_finish==false && dataForm.is_edit==true|| dataForm.status_form=='new') && this.visitorOrWorker=='workerValues'" data-bs-toggle="modal" data-bs-target="#exampleModal">שמירה</button>
+      <button mat-raised-button style="background-color: var(--color-buttons);color: #fff;" *ngIf="dataForm.status_form!='new'&&dataForm.is_finish==false" (click)="openEditForm()">{{dataForm.is_edit==false?'פתיחה לעריכה':'סגירה לעריכה'}}</button>
+      <button mat-raised-button style="background-color: var(--color-buttons);color:#fff" *ngIf="this.dataForm['is_finish']==true && this.visitorOrWorker=='visitorValues'" (click)="updateForm(true)">שמירה</button>
+      <button mat-raised-button style="background-color: var(--color-buttons);color:#fff" *ngIf="this.dataForm['is_finish']==true && this.visitorOrWorker=='visitorValues'&&this.dataForm.status_form!='invalid'" (click)="dataForm.is_edit=!dataForm.is_edit">{{dataForm.is_edit==true?'סגור עריכה':'פתח לעריכה'}}</button>
+   </div>
+      <div class="generalHeaders">
+         <ng-container *ngFor="let header of headerButtons['kanatFormHeaders']">
+                  <div class="container-buttons">
+                     <div style="background-color: var(--color-buttons);width: 100%;padding: 5px;border-radius: 4px;"><h2 style="color: #fff;margin-bottom: 0px;">{{header.type}}</h2></div>
+               
+                     <div style="display: flex;gap: 10px;align-items: center;flex-wrap: wrap;padding: 5px;">
+                        <ng-container *ngFor="let headerButton of header.arrayHeaderButton">
+                           <div style="display:flex;gap:5px;flex: auto;flex-basis: 1;">
+                              <button mat-raised-button class="style-button-plus" [disabled]="(dataForm.is_finish==true && dataForm.is_edit==true && this.visitorOrWorker=='workerValues') ||(dataForm.is_finish==true && dataForm.is_edit==false && this.visitorOrWorker=='visitorValues' )||this.dataForm.status_form=='invalid'" (click)="plus(header.type,headerButton.nameEnglish)">{{headerButton.nameHebraw}}</button>
+                              <div style="display: flex;flex-direction: column;gap: 5px;" >
+                                 <button mat-raised-button class="style-button-minus" [disabled]="this.dataForm['json_field'][0][this.visitorOrWorker][header.type][headerButton.nameEnglish]==0 || (dataForm.is_finish==true && dataForm.is_edit==true && this.visitorOrWorker=='workerValues') ||(dataForm.is_finish==true && dataForm.is_edit==false && this.visitorOrWorker=='visitorValues')|| this.dataForm.status_form=='invalid'" (click)="minus(header.type,headerButton.nameEnglish)">-</button>
+                                 <input class="form-control" style='width:80px;height: 50px;text-align: center;' [(ngModel)]="this.dataForm['json_field'][0][this.visitorOrWorker][header.type][headerButton.nameEnglish]">
+                              </div>
+                           </div>
+                        </ng-container>
+                     </div>
+                  </div>
+         </ng-container>
+      </div>
+      <div style="border: 1px solid #ccc;">
+         <div style="background-color: var(--color-buttons);width: 100%;padding: 5px;border-radius: 4px;padding: 5px;margin-top: 5px;margin-bottom: 5px;">
+            <h2 style="color: #fff;margin-bottom: 0px;">{{headerButtons['headerTableFormSumingDetails']['type']}}</h2>
+         </div>
+         <table style="table-layout: fixed;width: 100%;">
+            <thead>
+               <tr>
+                  <ng-container *ngFor="let header of headerButtons['headerTableFormSumingDetails']['headers']">
+                     <th style="background-color: var(--color-buttons);color: #fff;text-align: center;">{{header.nameHebraw}}</th>
+                  </ng-container>
+               </tr>
+            </thead>
+            <tbody>
+              
+                  <tr>
+                     <td style="text-align: center;" *ngFor="let header of headerButtons['headerTableFormSumingDetails']['headers']">{{this.dataForm['json_field'][0][this.visitorOrWorker][headerButtons['headerTableFormSumingDetails']['type']][header.nameEnglish]}}</td>
+                  </tr>
+       
+            </tbody>
+         </table>
+      </div>
+      
+   </div>
+</div>

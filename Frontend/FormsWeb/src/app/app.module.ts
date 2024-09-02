@@ -50,6 +50,7 @@ import { GeneralHeaderFormsComponent } from './pages/forms/general-header-forms/
 import { FormDeliveryControlComponent } from './pages/forms/form-delivery-control/form-delivery-control.component';
 import { ControlTableComponent } from './pages/control-table/control-table.component';
 import { SignaturePadModule } from 'angular2-signaturepad';
+import { KanatFormComponent } from './pages/forms/kanat-form/kanat-form.component';
 // const MyDefaultTooltipOptions: TooltipOptions = {
 //   'placement':'bottom',
 //   'show-delay': 200,
@@ -69,7 +70,7 @@ import { SignaturePadModule } from 'angular2-signaturepad';
   DialogRowDataGeneralComponent,
   TableQualityFormsComponent,
   DisinfectantsOfTableComponent,
-  QrPageOrderComponent,GeneralHeaderFormsComponent,FormDeliveryControlComponent,ControlTableComponent],
+  QrPageOrderComponent,GeneralHeaderFormsComponent,FormDeliveryControlComponent,ControlTableComponent,KanatFormComponent],
   imports: [
     CommonModule,
     SidebarModule,
