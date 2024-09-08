@@ -15,63 +15,65 @@ import { formatDate } from '@angular/common';
 export class KanatFormComponent implements OnInit{
   referenceForm:any=''
   headerButtons:any=new HeadersTableForms()
-  dataForm:any={}
+  dataForm:any={name_form:'טופס קנט',date_form:'',status_form:'new',is_edit:true,'json_field':[{workerValues:{},visitorValues:{}}],router:'/kant-form/',is_finish:false}
   visitorOrWorker:any
   isWork:boolean=false
   constructor(private restApi:RestApiService,private toast:ToastrService,private route:ActivatedRoute,private rotuerForm:Router){}
   ngOnInit(){
     this.referenceForm = this.route.snapshot.params['reference'];
     this.visitorOrWorker=this.route.snapshot.params['workerOrVisitor']
-   
-    
     if (this.referenceForm!=undefined){
       this.restApi.getSpecificForm(`${this.referenceForm}`).subscribe(data=>{
-        if(Object.entries(data['data_form']['json_field'][0][this.visitorOrWorker]).length==0){
-        this.emptyData()
         this.dataForm['reference']=this.referenceForm
-        }
-        else{
         this.dataForm['is_finish']=data['data_form']['is_finish']
-        this.getDataForm(data)}
+        this.getDataForm(data)
+      },error=>{
+       
       })
     }
     else{
-      this.dataForm['status_form']='new'
-      if(this.dataForm['status_form']=='new'){
-        this.dataForm['name_form']='טופס קנט'
-        this.dataForm['date_form']=formatDate(new Date(),'dd-MM-YYYY','en')
-        this.dataForm['is_edit']=true
-        this.dataForm['json_field']=[{workerValues:{},visitorValues:{}}]
-        this.dataForm['router']='/kant-form/'
-        this.dataForm['is_finish']=false
-        }
-    }
-    this.dataForm['status_form']='new'
-   
-    this.emptyData()
+      this.emptyData() 
+      }
+
   }
   emptyData(){
-   
+    this.dataForm['date_form']=formatDate(new Date(),'dd-MM-YYYY','en')
     var jsonEmpty:any={}
     this.headerButtons['kanatFormHeaders'].map((button:any)=>{
       jsonEmpty[button.type]={}
+      this.dataForm['json_field'][0][this.visitorOrWorker][button.type]={}
       button.arrayHeaderButton.map((bt:any)=>{
-        jsonEmpty[button.type][bt.nameEnglish]=0
+        this.dataForm['json_field'][0][this.visitorOrWorker][button.type][bt.nameEnglish]=0
       })
     })
-      jsonEmpty[this.headerButtons['headerTableFormSumingDetails'].type]={}
+      this.dataForm['json_field'][0][this.visitorOrWorker][this.headerButtons['headerTableFormSumingDetails'].type]={}
       this.headerButtons['headerTableFormSumingDetails']['headers'].map((headetTable:any)=>{
-      jsonEmpty[this.headerButtons['headerTableFormSumingDetails'].type][headetTable.nameEnglish]=0
+        this.dataForm['json_field'][0][this.visitorOrWorker][this.headerButtons['headerTableFormSumingDetails'].type][headetTable.nameEnglish]=0
     })
-      this.dataForm['json_field'][0][this.visitorOrWorker]=jsonEmpty
+  }
+  ifInstideInArray(header:any,headerButton:any):boolean|any{
+    
+    if(Object.keys(this.dataForm['json_field'][0][this.visitorOrWorker]).includes(header)){
+      
+      if(Object.keys(this.dataForm['json_field'][0][this.visitorOrWorker][header]).includes(headerButton)){
+        
+        return true
+      }
+      else{
+        return false
+      }
+    }
   }
   getDataForm(data:any){
-    this.dataForm=data['data_form']
+    for(let [key,value] of Object.entries(data['data_form'])){
+      this.dataForm[key]=value
+    }
+    if(Object.entries(this.dataForm['json_field'][0][this.visitorOrWorker]).length==0){
+      this.emptyData()
+    }
   }
   plus(headerType:any,headerButton:any){
-     
         this.dataForm['json_field'][0][this.visitorOrWorker][headerType][headerButton]+=1
-      
     switch(headerType){
       case 'נזקי טבע על פי חוזה':
         this.dataForm['json_field'][0][this.visitorOrWorker]['סיכום']['totalNaturalDamage']+=1
@@ -107,21 +109,22 @@ export class KanatFormComponent implements OnInit{
     this.dataForm['is_edit']=false
     this.dataForm['is_finish']=is_finish
     console.log('create',this.dataForm)
-    // this.restApi.createForm({'form_data':this.dataForm}).subscribe(data=>{
-    //   this.toast.success('טופס זה נוצר בהצלחה','טופס')
-    //   this.rotuerForm.navigate(['control-table'])
-    // },error=>{
-    //   this.toast.error("בעיה ביצירת הטופס","טופס")
-    // })
+    this.restApi.createForm({'form_data':this.dataForm}).subscribe(data=>{
+      this.toast.success('טופס זה נוצר בהצלחה','טופס')
+      this.rotuerForm.navigate(['control-table'])
+    },error=>{
+      this.toast.error("בעיה ביצירת הטופס","טופס")
+    })
   }
   updateForm(is_finish:boolean){
     this.dataForm['is_edit']=false
     this.dataForm['is_finish']=is_finish
-    console.log('update',this.dataForm)
-    // this.restApi.updateForm(`${this.dataForm['reference']}`,{form_data:this.dataForm}).subscribe(data=>{
-    //   this.toast.success('טופס זה עודכן בהצלחה','טופס')
-    //   this.rotuerForm.navigate(['control-table'])
-    // })
+    this.dataForm['status_form']=this.dataForm.status_form=='new'?'old':this.dataForm.status_form
+
+    this.restApi.updateForm(`${this.dataForm['reference']}`,{form_data:this.dataForm}).subscribe(data=>{
+      this.toast.success('טופס זה עודכן בהצלחה','טופס')
+      this.rotuerForm.navigate(['control-table'])
+    })
   }
   openEditForm(){
     this.dataForm['is_edit']=!this.dataForm['is_edit']
