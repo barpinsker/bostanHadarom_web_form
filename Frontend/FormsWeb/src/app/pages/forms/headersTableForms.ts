@@ -29,4 +29,37 @@ headerTable4:any=[
    {nameEnglish:"nameCheck",nameHebraw:"שם בודק"},
    {nameEnglish:"job",nameHebraw:"תפקיד"},
    {nameEnglish:"signature",nameHebraw:"חתימה"},]
+
+
+
+kanatFormHeaders:any=[
+   {type:"מזיקים לפסילת סט",arrayHeaderButton:[{nameEnglish:"NamedAfterAnApple",nameHebraw:'ע"ש תפוח'},{nameEnglish:"ThePeachFly",nameHebraw:"זבוב האפרסק"}]},
+   {type:"התחלה",arrayHeaderButton:[{nameEnglish:"validGoodClean",nameHebraw:"תקין / טוב / נקי"}]},
+   {type:"נזקי טבע על פי חוזה",arrayHeaderButton:[
+      {nameEnglish:"hail",nameHebraw:"ברד"},
+      {nameEnglish:"heat",nameHebraw:"חום"},
+      {nameEnglish:"green",nameHebraw:"ירוק"},
+      {nameEnglish:"snow",nameHebraw:"שלג"},
+      {nameEnglish:"storm",nameHebraw:"סערה"},
+      {nameEnglish:"happened",nameHebraw:"קרה"},
+      {nameEnglish:"multipleRains",nameHebraw:"גשמים מרובים"},
+
+   ]},
+   {type:"בררה",arrayHeaderButton:[
+      {nameEnglish:"shellDamage",nameHebraw:"פגעי קליפה"},
+      {nameEnglish:"diseasesAndPests",nameHebraw:"מחלות ומזיקים"},
+      {nameEnglish:"shapeSizeUnusual",nameHebraw:"צורה / גודל / חריג"},
+      {nameEnglish:"harvestingHarvests",nameHebraw:"פגעי קטיף"},
+   
+   ]},
+   // {type:"סיכום",nameEnglish:"sumTable"},
+]
+headerTableFormSumingDetails:any={type:"סיכום",nameEnglish:"suming",headers:[
+   {nameHebraw:'סהכ בררה',nameEnglish:'totallyClear'},
+   {nameHebraw:'סהכ נזקי טבע',nameEnglish:'totalNaturalDamage'},
+   {nameHebraw:'סהכ פירות שנבדקו',nameEnglish:'totalFruitTested'}]}
+
 }
+
+
+

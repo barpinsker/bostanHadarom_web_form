@@ -87,6 +87,9 @@ getSpecificForm(reference:any):Observable<any>{
 getAllFormControl():Observable<any>{
   return this.http.get(`${this.baseUrl}/get-all-form-control`)
 }
+getISHelfForm():Observable<any>{
+  return this.http.get(`${this.baseUrl}/get-is-helf-form`)
+}
 }
 
 

@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { Sidebar } from 'primeng/sidebar';
 import { MenuItem } from 'primeng/api';
+import { RestApiService } from '../services/rest-api.service';
 @Component({
   selector: 'app-sidebar',
   standalone: false,
@@ -28,10 +29,10 @@ links:Array<any>=[
 {namePage:"מגדלים",route:"/grower-page",icon:"group",active:false,dropDown:false},
 {namePage:"תעודות כניסה",router:"/certificates-page",icon:"library_books",active:false,dropDown:false},
 {namePage:'טפסים',icon:"description",active:false,dropDown:false,array:[
-  {nameForm:"טופס בקרת שילוח",route:'/form-delivery-control'},
+  {nameForm:"טופס בקרת שילוח",route:'/form-delivery-control',},
   {nameForm:"טופס בקרת איכות",route:'/form-delivery-control'},
   {nameForm:"טופס מוצר מוגמר",route:'/form-delivery-control'},
-  {nameForm:"טופס קנט",route:'/form-delivery-control'},
+  {nameForm:"טופס קנט",route:'/kant-form'},
   {nameForm:"טופס עמדת קנט",route:'/form-delivery-control'},]},
 {namePage:'הגדרות',route:"settings-page",icon:"settings",active:false,dropDown:false},
   ]
@@ -42,13 +43,11 @@ links:Array<any>=[
   dropLeft:boolean=false
   menuFormOpen:any;
   urlPath:any=window.location.pathname;
-  constructor() {
+  constructor(private restApi:RestApiService) {
   }
   ngOnInit(): void {
   
     this.onResize()
-    console.log(typeof(this.screenHeight))
-    console.log(this.screenWidth)
   }
   filterData($event:any){}
   changeLoclaStoreg(){
@@ -63,7 +62,6 @@ links:Array<any>=[
   
   this.isOpenMenu=!this.isOpenMenu
     if(this.isOpenMenu==true){
-    // openMenu.style.width='200px'
     openMenu.style.transform="translateX(0)";
     asideBar.style.backgroundColor="rgba(0,0,0,0.5)";
     asideBar.style.zIndex='10'
@@ -109,7 +107,6 @@ links:Array<any>=[
     var drop_Left:any=document.querySelector('#dropleft')
     var asideBar:any=document.querySelector('.sidebar-rigth')
     this.dropLeft=!this.dropLeft
-    
     if(this.dropLeft==true){
     if(drop_Left!=null){
     drop_Left.style.transform="translateX(-200px)";
@@ -118,6 +115,11 @@ links:Array<any>=[
     if(asideBar!=null)
     asideBar.style.borderRadius='0px 0px 0px 0px'
     }
+    this.restApi.getISHelfForm().subscribe(data=>{
+      this.moveForm(data['forms'])
+    },error=>{
+      this.moveForm([])
+    })
     }
     else{
       var drop_Left:any=document.querySelector('#dropleft')
@@ -128,10 +130,32 @@ links:Array<any>=[
       asideBar.style.borderRadius='0px 0px 0px 15px'
     }
     }
+ 
+    
   }
-  toMoiveCreateFrom(){
 
+  moveForm(forms:any){
+    this.links[5].array.map((form:any)=>{
+       if(form.nameForm==='טופס קנט')
+            form.route=form.route+`;workerOrVisitor=workerValues`
+      forms.map((data:any)=>{
+        if(form.nameForm==data.name_form){
+          if(form.nameForm==='טופס קנט')
+            form.route=form.route+`;reference=${data.reference};workerOrVisitor='workerOrVisitor'`
+          else{
+            form.route=form.route+`;reference=${data.reference}`
+          }
+          form['status_form']='חלקי'
+        }else{
+          console.log(form)
+         
+          form['status_form']=''
+        }
+      })
+    })
+   
   }
+
   @HostListener('window:resize', ['$event'])
 onResize(event?:any
 ) {

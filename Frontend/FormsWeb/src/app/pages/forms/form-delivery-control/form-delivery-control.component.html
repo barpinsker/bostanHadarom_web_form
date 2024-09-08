@@ -25,7 +25,6 @@
          <app-general-header-forms [nameForm]="'בקרת שילוח'" [edition]="1" [formDate]="'19.08.24'" [pageNo]="6" [effectiveDate]="'1.10.17'"></app-general-header-forms>
          <div style="display: flex;gap: 5px;margin-bottom: 15px;">
             <button mat-raised-button style="background-color: var(--color-buttons);color: #fff;" *ngIf="dataForm.is_edit==true || dataForm.status_form=='new'" (click)="dataForm.status_form=='new'?saveForm():updateForm()">שמירה</button>
-            <!-- <button mat-raised-button style="background-color: var(--color-buttons);color: #fff;" *ngIf="dataForm.is_edit==true && dataForm.status_form!='new'">עריכה</button> -->
             <button mat-raised-button style="background-color: var(--color-buttons);color: #fff;" *ngIf="dataForm.status_form!='new'" (click)="openEditForm()">{{dataForm.is_edit==false?'פתיחה לעריכה':'סגירה לעריכה'}}</button>
          </div>
       </div>

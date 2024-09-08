@@ -1,3 +1,26 @@
+
+<div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h1 class="modal-title">שאלת ביטחון</h1>
+         
+       </div>
+       <div style="display: flex;justify-content: right;align-items: right;padding: 5px;">
+           <h3 style="margin-bottom: 0px;">טופס למבקר או לתצוגה</h3>
+       </div>
+       <div class="modal-footer">
+         <button type="button" mat-raised-button style="background-color: var(--color-buttons);color: #fff;" data-bs-dismiss="modal" (click)="moveFormModel('visitorValues')">למבקר</button>
+         <button type="button" mat-raised-button style="background-color: var(--color-buttons);color: #fff;" data-bs-dismiss="modal" (click)="moveFormModel('workerValues')">לעובד</button>
+         <button type="button" mat-raised-button  data-bs-dismiss="modal">ביטול</button>
+       </div>
+     </div>
+   </div>
+ </div>
+
+
+
+
 <div style="padding: 10px;">
 
    <div class="container-general" style="margin-top: 10px;">
@@ -13,8 +36,13 @@
 
             <tbody>
                <ng-container *ngFor="let data of dataTable">
-                  <tr (click)="moveForm(data['reference'])">
-                     <td *ngFor="let header of headerTable">{{data[header.nameEnglish]}}</td>
+                  <!-- (click)="data.is_finish==true?this.jsonForm=data:moveFormWorker('workerValues',data.name_form);this.jsonForm=data"  -->
+                   <tr (click)="moveFormWorker(data)">
+                  <!-- <tr attr.data-bs-toggle="{{data.is_finish==false?'modal':''}}" attr.data-bs-target="{{data.is_finish==false?'#exampleModal':''}}" data-bs-whatever="@mdo"> -->
+                     <ng-container  *ngFor="let header of headerTable">
+                        <td *ngIf="header.nameEnglish!='is_finish'">{{data[header.nameEnglish]}}</td>
+                        <td *ngIf="header.nameEnglish=='is_finish'">{{data[header.nameEnglish]==true?'גמור':'חלקי'}}</td>
+                     </ng-container>
                   </tr>
                </ng-container>
             </tbody>
