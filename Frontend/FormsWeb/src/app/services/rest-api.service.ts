@@ -49,6 +49,23 @@ this.http.get(url,{
 })
 }
 
+// function disinfectants //
+// re_path(r"^get-new-reference",views.get_new_reference),
+// re_path(r'^create-new-row/$',views.OfficialEventFrom.as_view()) 
+createNewRow(data:any):Observable<any>{
+  return this.http.post(`${this.baseUrl}/create-new-row/`,data)
+}
+getAllDisinfectants():Observable<any>{
+  return this.http.get(`${this.baseUrl}/get-all-disinfectants`)
+}
+getNewReference():Observable<any>{
+  return this.http.get(`${this.baseUrl}/get-new-reference`)
+}
+updateRowDisinfectants(data:any):Observable<any>{
+  return this.http.put(`${this.baseUrl}/update-row/`,data)
+}
+
+
 // function orders //
 saveDataOrder(data:any):Observable<any>{
   return this.http.post(`${this.baseUrl}/create-order/`,data)
@@ -90,6 +107,9 @@ getAllFormControl():Observable<any>{
 getISHelfForm():Observable<any>{
   return this.http.get(`${this.baseUrl}/get-is-helf-form`)
 }
+
+
+
 }
 
 
