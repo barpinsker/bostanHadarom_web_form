@@ -23,5 +23,6 @@ urlpatterns = [
     path('api/',include('orders.urls')),
     path('api/',include('setting_page.urls')),
     path('api/',include('forms.urls')),
+    path('api/',include('disinfectants_table.urls')),
 
 ]

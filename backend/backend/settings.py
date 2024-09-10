@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'orders',
     'setting_page',
     'forms',
+    'disinfectants_table'
 
 ]
 

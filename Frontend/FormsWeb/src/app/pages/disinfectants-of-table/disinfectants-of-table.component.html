@@ -1,7 +1,59 @@
+
+<div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h1 class="modal-title">שורה חדשה</h1>
+         
+       </div>
+       <div style="display: flex;padding: 5px;gap: 5px;flex-wrap: wrap;margin-top: 10px;">
+           <ng-container *ngFor="let inputs of headerTable">
+            <div class="field">
+               <input type="{{inputs.type}}" [disabled]="inputs.nameEnglish=='reference'" class="form-control" id="{{inputs.nameEnglish}}" [(ngModel)]="dataRow[inputs.nameEnglish]">
+               <label class="label-before-this-page" for="{{inputs.nameEnglish}}" title="{{inputs.nameHebraw}}" data-title=""></label>
+            </div>
+           </ng-container>
+       </div>
+       <div class="modal-footer">
+         <button type="button" mat-raised-button style="background-color: var(--color-buttons);color: #fff;"  (click)="addRowToTable()">הוסף</button>
+         <button type="button" class="button-add" mat-raised-button data-bs-dismiss='modal'>סגור חלון</button>
+         <button type="button" mat-raised-button  data-bs-dismiss="modal">ביטול</button>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ 
+<div class="modal fade" id="updateModal" tabindex="-1" data-bs-backdrop="static"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h1 class="modal-title">עדכון שורה</h1>
+         
+       </div>
+       <div style="display: flex;padding: 5px;gap: 5px;flex-wrap: wrap;margin-top: 10px;">
+           <ng-container *ngFor="let inputs of headerTable">
+            <div class="field">
+               <input type="{{inputs.type}}" [disabled]="inputs.nameEnglish=='reference'" class="form-control" id="{{inputs.nameEnglish}}" [(ngModel)]="dataRow[inputs.nameEnglish]">
+               <label class="label-before-this-page" for="{{inputs.nameEnglish}}" title="{{inputs.nameHebraw}}" data-title=""></label>
+            </div>
+           </ng-container>
+       </div>
+       <div class="modal-footer">
+         <button type="button" mat-raised-button style="background-color: var(--color-buttons);color: #fff;"  (click)="updateRowDisinfectants()">שמור</button>
+         <button type="button" mat-raised-button  data-bs-dismiss="modal">ביטול</button>
+       </div>
+     </div>
+   </div>
+ </div>
+
+
 <div style="padding: 10px;">
 
    <div class="container-general" style="margin-top: 10px;">
-
+      <div style="margin-bottom: 10px;">
+         <button mat-raised-button class="button-add"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getNewReference()"><span  class="material-symbols-outlined" style="position: relative;top: 3px;">add</span></button>
+      </div>
       <div class="mat-elevation-z8" style="border-radius: 4px;max-height: 80vh;">
          <table style="width: 100%;table-layout: fixed;">
             <thead>
@@ -11,7 +63,7 @@
             </thead>
             <tbody>
                <ng-container *ngFor="let data of dataTable;index as i">
-                     <tr>
+                     <tr   (click)="getDataRow(data)">
                         <td *ngFor="let header of headerTable">{{data[header.nameEnglish]}}</td>
                      </tr>
                </ng-container>
