@@ -23,6 +23,7 @@ links:Array<any>=[
   {namePage:'סטים',route:"",icon:"table"},
   {namePage:'טפסי בקרה',route:"/control-table",icon:"table"},
   {namePage:'טפסי איכות',route:"/table-quality-forms",icon:"table"},
+  {namePage:'בקרת איכות',route:"/quality-table",icon:"table"},
   {namePage:'טבלת תקנים',route:"/table-of-standards",icon:"table"},
   {namePage:'חומרי חיטוי',route:"/disinfectants-of-table",icon:"table"}
 ]},

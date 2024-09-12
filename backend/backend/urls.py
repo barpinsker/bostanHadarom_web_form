@@ -24,5 +24,6 @@ urlpatterns = [
     path('api/',include('setting_page.urls')),
     path('api/',include('forms.urls')),
     path('api/',include('disinfectants_table.urls')),
+     path('api/',include('quality_table.urls')),
 
 ]

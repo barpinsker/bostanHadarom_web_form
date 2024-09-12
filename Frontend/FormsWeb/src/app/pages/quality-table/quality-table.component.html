@@ -1,0 +1,28 @@
+<div style="padding: 10px;">
+   <div class="container-general" style="margin-top: 10px;">
+      <div style="margin-bottom: 10px;">
+         <button mat-raised-button class="button-add"><span  class="material-symbols-outlined" style="position: relative;top: 3px;" (click)="newTest()">add</span></button>
+      </div>
+      <div class="mat-elevation-z8" style="border-radius: 4px;max-height: 80vh;">
+         <table style="width: 100%;table-layout: fixed;">
+            <thead>
+               <tr>
+                  <th *ngFor="let header of headerTable">{{header.nameHebraw}}</th>
+               </tr>
+            </thead>
+            <tbody>
+               <ng-container *ngFor="let data of dataTable">
+                  <tr (click)="moveRouterTest(data['reference_test'])"> 
+                     <ng-container *ngFor="let header of headerTable">
+                        <td *ngIf="header.nameEnglish!='status_test'">{{data[header.nameEnglish]}}</td>
+                        <td *ngIf="header.nameEnglish=='status_test'">{{data['is_finish']==false?'חלקי':'גמור'}}</td>
+                     </ng-container>
+                  </tr>
+               </ng-container>
+               
+               <tr *ngIf="this.dataTable.length==0"><td colspan="7">אין מידע בטבלה</td></tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
