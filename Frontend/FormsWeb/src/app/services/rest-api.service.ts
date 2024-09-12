@@ -108,8 +108,23 @@ getISHelfForm():Observable<any>{
   return this.http.get(`${this.baseUrl}/get-is-helf-form`)
 }
 
-
-
+////// quality function ////////////////////
+createQualityForm(data:any):Observable<any>{
+  return this.http.post(`${this.baseUrl}/create-quality-form/`,data)
+}
+updateQualityForm(data:any):Observable<any>{
+  return this.http.put(`${this.baseUrl}/update-quality-form/`,data)
+}
+getSpecificQualityForm(reference_test:any):Observable<any>{
+  return this.http.get(`${this.baseUrl}/get-specific-quality-form/${reference_test}`)
+}
+getAllQualityForm():Observable<any>{
+  return this.http.get(`${this.baseUrl}/get-all-quality-form`)
+}
+getNewReferenceTest():Observable<any>{
+  return this.http.get(`${this.baseUrl}/get-new`)
+}
+// 
 }
 
 

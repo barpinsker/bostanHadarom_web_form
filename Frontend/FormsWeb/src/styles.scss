@@ -97,7 +97,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;direction: r
   position: relative;
   top: 40px;
   // right: 13%;
-  height: 85vh;
+  height: 90vh;
   overflow-y: auto;
   overflow-x: hidden !important;
   z-index: 0;
@@ -131,8 +131,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background: #fff;
   top: -20px;
   padding: 0 6px;
-    transition: 300ms all;
-    border-color: var(--color-info-dark) !important;
+  transition: 300ms all;
+  border-color: var(--color-info-dark) !important;
   // left: 9px;
 }
 .form-control,.form-select{

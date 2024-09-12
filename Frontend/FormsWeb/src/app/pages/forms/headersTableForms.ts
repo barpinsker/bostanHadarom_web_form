@@ -59,7 +59,11 @@ headerTableFormSumingDetails:any={type:"סיכום",nameEnglish:"suming",headers
    {nameHebraw:'סהכ נזקי טבע',nameEnglish:'totalNaturalDamage'},
    {nameHebraw:'סהכ פירות שנבדקו',nameEnglish:'totalFruitTested'}]}
 
+
+  
 }
+
+
 
 
 

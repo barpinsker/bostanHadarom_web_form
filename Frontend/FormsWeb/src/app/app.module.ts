@@ -51,6 +51,9 @@ import { FormDeliveryControlComponent } from './pages/forms/form-delivery-contro
 import { ControlTableComponent } from './pages/control-table/control-table.component';
 import { SignaturePadModule } from 'angular2-signaturepad';
 import { KanatFormComponent } from './pages/forms/kanat-form/kanat-form.component';
+import { QualityTableComponent } from './pages/quality-table/quality-table.component';
+import { QualityFormComponent } from './pages/forms/quality-form/quality-form.component';
+
 // const MyDefaultTooltipOptions: TooltipOptions = {
 //   'placement':'bottom',
 //   'show-delay': 200,
@@ -70,7 +73,7 @@ import { KanatFormComponent } from './pages/forms/kanat-form/kanat-form.componen
   DialogRowDataGeneralComponent,
   TableQualityFormsComponent,
   DisinfectantsOfTableComponent,
-  QrPageOrderComponent,GeneralHeaderFormsComponent,FormDeliveryControlComponent,ControlTableComponent,KanatFormComponent],
+  QrPageOrderComponent,GeneralHeaderFormsComponent,FormDeliveryControlComponent,ControlTableComponent,KanatFormComponent,QualityTableComponent,QualityFormComponent],
   imports: [
     CommonModule,
     SidebarModule,
